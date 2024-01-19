@@ -11,6 +11,7 @@ function PageHome(){
             .then((data)=>{
                 console.log(data)
                 setPopMovies(data.results);
+                
             })
 
             .catch((err)=>{
@@ -18,6 +19,9 @@ function PageHome(){
             })
             
         },[])
+
+        console.log(popMovies);
+
     return(
         <main id="home">
             <MoviesContainer title = "Popular Movies" moviesData = {popMovies}/>
