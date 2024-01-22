@@ -1,6 +1,6 @@
 const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN;
 const API_ENDPOINT = "https://api.themoviedb.org/3";
-console.log(API_TOKEN)
+const IMAGE_URL_BASE = "https://image.tmdb.org/t/p"
 
 function getPopularMovies(){
     const options = {
@@ -25,4 +25,4 @@ function getPopularMovies(){
 
 
 
-export {getPopularMovies };
+export {getPopularMovies, IMAGE_URL_BASE };

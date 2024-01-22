@@ -1,3 +1,5 @@
+import { IMAGE_URL_BASE } from "../utilities/api";
+
 const defaultMovieData = {
     "adult": false,
     "backdrop_path": "/f1AQhx6ZfGhPZFTVKgxG91PhEYc.jpg",
@@ -20,9 +22,16 @@ const defaultMovieData = {
 };
 
 function MovieCard({movieData=defaultMovieData}){
+    const imagePath = `${IMAGE_URL_BASE}/w185${movieData.poster_path}`
     return(
         <div className="movie-card">
-            <h3>{movieData.title}</h3>
+            <img src={imagePath} alt="" />
+            <div className="title-and-release">
+                <h3 className="title">{movieData.title}</h3>
+                <h4 className="release-date">{movieData.release_data}</h4>
+            </div>
+            <h4 className="vote-average">{movieData.vote_average.toFixed(1)}</h4>
+            <button className="favourite">&#9829;</button>
         </div>
     )
 }
