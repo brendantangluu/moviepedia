@@ -16,6 +16,9 @@ function Nav({ className }) {
         <li className='m-4'>
           <NavLink to="/about">About</NavLink>
         </li>
+        <li className='m-4'>
+          <NavLink to="/single">Single</NavLink>
+        </li>
       </ul>
     </nav>
   );

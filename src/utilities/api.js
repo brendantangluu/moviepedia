@@ -25,4 +25,4 @@ function getPopularMovies(){
 
 
 
-export {getPopularMovies, IMAGE_URL_BASE };
+export {getPopularMovies, IMAGE_URL_BASE, API_ENDPOINT };
