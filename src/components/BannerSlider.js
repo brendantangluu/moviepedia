@@ -19,7 +19,7 @@ function CarouselDefault({moviesData}) {
     shuffleArray(shuffledMoviesData)
 
 return (
-    <Carousel autoplay = {true} autoplayDelay = {7000} loop = {true} transition={{ duration: 1.5 }}>
+    <Carousel autoplay = {true} autoplayDelay = {7000} loop = {true} transition={{ duration: 0.5 }}>
       {shuffledMoviesData.slice(0, 6).map((movieData) => (
         <div key={movieData.id}>
           <Banner movieData={movieData} />
