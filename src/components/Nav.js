@@ -8,13 +8,13 @@ function Nav({ className }) {
           <NavLink to="/">Profile</NavLink>
         </li>
         <li className='m-4'>
-          <NavLink to="/about">Watch List</NavLink>
+          <NavLink to="/">Watch List</NavLink>
         </li>
         <li className='m-4'>
           <NavLink to="/portfolio">Favourites</NavLink>
         </li>
         <li className='m-4'>
-          <NavLink to="/portfolio">About</NavLink>
+          <NavLink to="/about">About</NavLink>
         </li>
       </ul>
     </nav>
