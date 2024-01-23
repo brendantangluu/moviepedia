@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getPopularMovies } from "../utilities/api";
 import MoviesContainer from "../components/MoviesContainer";
+import { CarouselDefault } from "../components/BannerSlider";
+
 
 function PageHome(){
         const [popMovies, setPopMovies] = useState([]);
@@ -24,6 +26,7 @@ function PageHome(){
 
     return(
         <main id="home">
+            <CarouselDefault/>
             <MoviesContainer title = "Popular Movies" moviesData = {popMovies}/>
         </main>
 
