@@ -14,7 +14,7 @@ function MoviesContainer({ title, moviesData }) {
 
   return (
     <section className="movies-container">
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+      <h2 className="text-2xl font-bold mb-4 pl-2">{title}</h2>
       <div className="movie-carousel relative overflow-x-scroll whitespace-nowrap">
         <div className="movie-cards flex" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>
           {moviesData.length > 0 &&

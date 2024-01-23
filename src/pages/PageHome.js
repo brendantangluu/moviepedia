@@ -4,6 +4,7 @@ import MoviesContainer from "../components/MoviesContainer";
 import { CarouselDefault } from "../components/BannerSlider";
 
 
+
 function PageHome(){
         const [popMovies, setPopMovies] = useState([]);
 
@@ -26,7 +27,7 @@ function PageHome(){
 
     return(
         <main id="home">
-            <CarouselDefault/>
+            <CarouselDefault moviesData={popMovies}/>
             <MoviesContainer title = "Popular Movies" moviesData = {popMovies}/>
         </main>
 

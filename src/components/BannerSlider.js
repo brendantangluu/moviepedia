@@ -1,23 +1,32 @@
 import { Carousel } from "@material-tailwind/react";
- 
-export function CarouselDefault() {
-  return (
-    <Carousel className="rounded-xl">
-      <img
-        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-        alt="image 1"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-        alt="image 2"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-        alt="image 3"
-        className="h-full w-full object-cover"
-      />
+import Banner from "./Banner";
+
+// Creates a function randomizing the array of banner images
+// This ensures that each time a user requests it will output 4 random banners (from Popular Movies) to the carousel
+
+function shuffleArray(array) {
+    // Function to shuffle the array using Fisher-Yates algorithm
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+function CarouselDefault({moviesData}) {
+    console.log("moviesData:", moviesData);
+    
+    const shuffledMoviesData = [...moviesData];
+    shuffleArray(shuffledMoviesData)
+
+return (
+    <Carousel autoplay = {true} autoplayDelay = {7000} loop = {true} transition={{ duration: 1.5 }}>
+      {shuffledMoviesData.slice(0, 6).map((movieData) => (
+        <div key={movieData.id}>
+          <Banner movieData={movieData} />
+        </div>
+      ))}
     </Carousel>
   );
 }
+
+export {CarouselDefault};
