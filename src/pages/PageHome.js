@@ -28,7 +28,7 @@ function PageHome(){
     return(
         <main id="home">
             <CarouselDefault moviesData={popMovies}/>
-            <MoviesContainer title = "Popular Movies" moviesData = {popMovies}/>
+            <MoviesContainer title = "Popular" moviesData = {popMovies}/>
         </main>
 
     )
