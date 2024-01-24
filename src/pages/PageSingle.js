@@ -3,7 +3,7 @@ import {API_ENDPOINT} from "../utilities/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-function PageSingle({movieData}){
+function PageSingle(){
     
     const { id } = useParams(); 
     
