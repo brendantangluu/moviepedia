@@ -1,7 +1,7 @@
 import { IMAGE_URL_BASE, fetchTrailers, getPopularMovies, getMovieDetails } from "../utilities/api";
-import {API_ENDPOINT} from "../utilities/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 
 function PageSingle(){
@@ -67,10 +67,18 @@ function PageSingle(){
             {/* Movie Info Tabs */}
             <nav className="m-5 mx-6 text-base">
                 <ul className="flex justify-between">
+                   <Link to={`/single/${loadedMovieData.id}/about`}>
                     <li>About</li>
+                   </Link>
+                   <Link to={`/single/${loadedMovieData.id}/cast`}>
                     <li>Cast</li>
+                   </Link>
+                   <Link to={`/single/${loadedMovieData.id}/reviews`}>
                     <li>Reviews</li>
+                   </Link>
+                   <Link to={`/single/${loadedMovieData.id}/more`}>
                     <li>More</li>
+                   </Link>
                 </ul>
             </nav>
 
