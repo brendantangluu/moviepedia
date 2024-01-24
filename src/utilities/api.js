@@ -23,6 +23,47 @@ function getPopularMovies(){
         });
 }
 
+function fetchTrailers({movieData}){
+  const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${API_TOKEN}`,
+      }
+    };
+    
+    return fetch(`${API_ENDPOINT}/movie/${movieData.id}/videos`, options)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response was not OK");
+          }
+          return response.json();
+      })
+      .catch(err => {
+          throw err;
+      });
+}
+
+function getMovieDetails(movieId) {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${API_TOKEN}`,
+    }
+  };
+
+  return fetch(`${API_ENDPOINT}/movie/${movieId}`, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return response.json();
+    })
+    .catch(err => {
+      throw err;
+    });
+}
 
 
-export {getPopularMovies, IMAGE_URL_BASE, API_ENDPOINT };
+export {getPopularMovies, fetchTrailers, getMovieDetails, IMAGE_URL_BASE, API_ENDPOINT };

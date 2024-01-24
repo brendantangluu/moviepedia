@@ -1,33 +1,35 @@
-import { IMAGE_URL_BASE } from "../utilities/api";
+import { IMAGE_URL_BASE, fetchTrailers, getPopularMovies, getMovieDetails } from "../utilities/api";
 import {API_ENDPOINT} from "../utilities/api";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const defaultMovieData = {
-    "adult": false,
-    "backdrop_path": "/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
-    "genre_ids": [
-        18,
-        36
-    ],
-    "id": 872585,
-    "original_language": "en",
-    "original_title": "Oppenheimer",
-    "overview": "The story of J. Robert Oppenheimer's role in the development of the atomic bomb during World War II.",
-    "popularity": 531.021,
-    "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    "release_date": "2023-07-19",
-    "title": "Oppenheimer",
-    "video": false,
-    "vote_average": 8.115,
-    "vote_count": 6273
-};
-
-
-
-function PageSingle({ movieData = defaultMovieData }){
-    const imagePath = `${IMAGE_URL_BASE}/w780${movieData.backdrop_path}`;
-    const truncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 120)}...` : movieData.overview;
-    const trailerPath = `${API_ENDPOINT}/movie/${movieData.id}/videos`;
+function PageSingle({movieData}){
     
+    const { id } = useParams(); 
+    
+    const [loadedMovieData, setLoadedMovieData] = useState();
+    
+    useEffect(() => {
+        getMovieDetails(id)
+        .then((data) => {
+            setLoadedMovieData(data);
+            console.log(data)
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    }, [id]);
+    
+    if (!loadedMovieData) {
+        // You can render a loading state here
+        return <p>Loading...</p>;
+      }
+
+    const imagePath = `${IMAGE_URL_BASE}/w780${loadedMovieData.backdrop_path}`;
+    const truncatedOverview = loadedMovieData.overview.length > 30 ? `${loadedMovieData.overview.slice(0, 120)}...` : loadedMovieData.overview;
+    const trailerPath = `${API_ENDPOINT}/movie/${loadedMovieData.id}/videos`;
+
+
     return(
         <div className="relative">
             <img src={imagePath} alt="" />
@@ -41,13 +43,13 @@ function PageSingle({ movieData = defaultMovieData }){
                 </div>
 
                 {/* Movie Info */}
-                <h2>{movieData.title}</h2>
-                <h3>{movieData.release_date}</h3>
+                <h2>{loadedMovieData.title}</h2>
+                <h3>{loadedMovieData.release_date}</h3>
 
                 {/* Movie Info - Rating and Date */}
                 <div className="flex">
                     <svg className = "mb-0.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                    <h3 className="text-sm ml-2">{movieData.vote_average.toFixed(1)}</h3>
+                    <h3 className="text-sm ml-2">{loadedMovieData.vote_average.toFixed(1)}</h3>
                 </div>
 
             </div>
@@ -68,7 +70,7 @@ function PageSingle({ movieData = defaultMovieData }){
             </div>
 
             {/* Movie Trailer */}
-            <div>
+            {/* <div>
                 <iframe
                 width="100%"
                 height="315"
@@ -78,7 +80,7 @@ function PageSingle({ movieData = defaultMovieData }){
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
             ></iframe>
-            </div>
+            </div> */}
 
         </div>
     )

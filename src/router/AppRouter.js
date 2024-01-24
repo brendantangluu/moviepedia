@@ -12,7 +12,7 @@ function AppRouter(){
         <Header/>
         <Routes>
             <Route path="/" element = {<PageHome/>} />
-            <Route path="/single" element = {<PageSingle/>}/>
+            <Route path="/single/:id" element = {<PageSingle/>}/>
             <Route path="/about" element = {<PageAbout/>}/>
         </Routes>
         <Footer/>
