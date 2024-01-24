@@ -24,7 +24,7 @@ function MovieCard({ movieData = defaultMovieData }) {
 
   return (
     <div className="w-[136px] flex flex-col items-center relative">
-      <Link to ={`/single/${movieData.id}`}>
+      <Link to ={`/single/${movieData.id}/about`}>
         <img className="h-[204px] object-cover mb-2" src={imagePath} alt="" />
       </Link>
       <div className="flex w-[136px] align-middle items-center mb-2.5">
