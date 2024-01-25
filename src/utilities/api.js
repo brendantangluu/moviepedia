@@ -23,6 +23,69 @@ function getPopularMovies(){
         });
 }
 
+function getTopRatedMovies(){
+  const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${API_TOKEN}`,
+      }
+    };
+    
+    return fetch(`${API_ENDPOINT}/movie/top_rated`, options)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response was not OK");
+          }
+          return response.json();
+      })
+      .catch(err => {
+          throw err;
+      });
+}
+
+function getUpcomingMovies(){
+  const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${API_TOKEN}`,
+      }
+    };
+    
+    return fetch(`${API_ENDPOINT}/movie/upcoming`, options)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response was not OK");
+          }
+          return response.json();
+      })
+      .catch(err => {
+          throw err;
+      });
+}
+
+function getNowPlayingMovies(){
+  const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${API_TOKEN}`,
+      }
+    };
+    
+    return fetch(`${API_ENDPOINT}/movie/now_playing`, options)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Network response was not OK");
+          }
+          return response.json();
+      })
+      .catch(err => {
+          throw err;
+      });
+}
+
 function fetchTrailers({movieData}){
   const options = {
     method: 'GET',
@@ -59,5 +122,20 @@ function getMovieDetails(movieId) {
     });
 }
 
+function getCreditDetails(creditId){
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${API_TOKEN}`,
+    }
+  };
 
-export {getPopularMovies, fetchTrailers, getMovieDetails, IMAGE_URL_BASE, API_ENDPOINT };
+  return fetch(`${API_ENDPOINT}/credit/${creditId}`, options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+
+}
+
+export {getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, fetchTrailers, getMovieDetails, getCreditDetails, IMAGE_URL_BASE, API_ENDPOINT };

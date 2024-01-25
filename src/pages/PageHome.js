@@ -1,37 +1,63 @@
 import { useEffect, useState } from "react";
-import { getPopularMovies } from "../utilities/api";
-import MoviesContainer from "../components/MoviesContainer";
+import { getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies } from "../utilities/api";
 import { CarouselDefault } from "../components/BannerSlider";
+import MoviesContainer from "../components/MoviesContainer";
 
+function PageHome() {
+  const [activeCategory, setActiveCategory] = useState("popular");
+  const [movies, setMovies] = useState([]);
+  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500");
 
+  const fetchMoviesByCategory = async (category) => {
+    try {
+      let result;
+      switch (category) {
+        case "Popular":
+          result = await getPopularMovies();
+          break;
+        case "Top Rated":
+          result = await getTopRatedMovies();
+          break;
+        case "Upcoming":
+          result = await getUpcomingMovies();
+          break;
+        case "Now Playing":
+          result = await getNowPlayingMovies();
+          break;
+        default:
+          result = await getPopularMovies();
+      }
+      setMovies(result.results);
+    } catch (error) {
+      console.error(`Error fetching ${category} movies:`, error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchMoviesByCategory(activeCategory);
+  }, [activeCategory]);
+  
+  useEffect(() => {
+    // Set activeCategoryHighlight to "text-blue-500" when the component mounts
+    
+    setActiveCategoryHighlight("text-blue-500");
+  }, []);
+  
 
-function PageHome(){
-        const [popMovies, setPopMovies] = useState([]);
-
-        useEffect(()=>{
-            getPopularMovies()
-
-            .then((data)=>{
-                console.log(data)
-                setPopMovies(data.results);
-                
-            })
-
-            .catch((err)=>{
-                alert(err);
-            })
-            
-        },[])
-
-        console.log(popMovies);
-
-    return(
-        <main id="home">
-            <CarouselDefault moviesData={popMovies}/>
-            <MoviesContainer title = "Popular" moviesData = {popMovies}/>
-        </main>
-
-    )
+  return (
+    <main id="home">
+      <CarouselDefault moviesData={movies} />  
+      <nav>
+        <ul className="flex text-sm justify-between mx-2 my-4">
+          <li onClick={() => { setActiveCategory("Popular"); }} className={`${activeCategory === "Popular" ? activeCategoryHighlight : ""} cursor-pointer`}>Popular</li>
+          <li onClick={() => { setActiveCategory("Top Rated"); }} className={`${activeCategory === "Top Rated" ? activeCategoryHighlight : ""} cursor-pointer`}>Top Rated</li>
+          <li onClick={() => { setActiveCategory("Upcoming"); }} className={`${activeCategory === "Upcoming" ? activeCategoryHighlight : ""} cursor-pointer`}>Upcoming</li>
+          <li onClick={() => { setActiveCategory("Now Playing"); }} className={`${activeCategory === "Now Playing" ? activeCategoryHighlight : ""} cursor-pointer`}>Now Playing</li>
+        </ul>
+      </nav>
+      <MoviesContainer moviesData={movies} />
+    </main>
+  );
 }
 
 export default PageHome;

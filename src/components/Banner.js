@@ -8,7 +8,7 @@ function Banner({movieData}) {
     
     return(
         <div>
-            <Link to ={`/single/${movieData.id}`}>
+            <Link to ={`/single/${movieData.id}/about`}>
                 <img src={bannerPath} alt="" />
             </Link>
         </div>    

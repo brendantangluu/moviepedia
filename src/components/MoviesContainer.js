@@ -17,12 +17,14 @@ function MoviesContainer({ title, moviesData }) {
       <h2 className="text-xl font-bold my-4 pl-2">{title}</h2>
       <div className="movie-carousel relative overflow-x-scroll whitespace-nowrap">
         <div className="movie-cards flex" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>
+          
           {moviesData.length > 0 &&
             moviesData.map((movieData) => (
               <div key={movieData.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2">
                 <MovieCard movieData={movieData} />
               </div>
             ))}
+            
         </div>
       </div>
     </section>
