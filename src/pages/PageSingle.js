@@ -1,6 +1,8 @@
 import { IMAGE_URL_BASE, fetchTrailers, getPopularMovies, getMovieDetails, getCreditDetails } from "../utilities/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import CastCard from "../components/CastCard";
+
 
 
 
@@ -27,18 +29,22 @@ function PageSingle(){
         getMovieDetails(id)
             .then((data) => {
                 setLoadedMovieData(data);
-    
+                console.log(data);
+                
+                // fetchTrailers returning undefined, need to fix
                 fetchTrailers({ movieData: data })
                     .then((trailerData) => {
                         setLoadedTrailer(trailerData);
+                        console.log(trailerData);
                     })
                     .catch((trailerError) => {
                         console.error('Error fetching trailers:', trailerError);
                     });
-
-                getCreditDetails({creditId: data})
-                .then((creditData)=> {
-                    setCreditData(creditData);
+                
+                
+                getCreditDetails(id)
+                .then((data)=> {
+                    setCreditData(data);
                 })
                 .catch((creditError)=>{
                     console.error('Error fetching credits:', creditError);
@@ -57,7 +63,7 @@ function PageSingle(){
 
     const imagePath = `${IMAGE_URL_BASE}/w780${loadedMovieData.backdrop_path}`;
     const truncatedOverview = loadedMovieData.overview.length > 30 ? `${loadedMovieData.overview.slice(0, 120)}...` : loadedMovieData.overview;
-    
+   
 
 
     return(
@@ -119,15 +125,22 @@ function PageSingle(){
                 </div>
             )}
             {activeTab === 'cast' && (
-                <div id='cast'>
-                    
-                </div>
+                <div>    
+                    {console.log(creditData)}
+                    {creditData.cast.length > 0 &&
+                    creditData.cast.map((castData) => (
+                        <div key={castData.id}>
+                        <CastCard castData={castData} />
+                        </div>
+                    ))}
+              </div>
             )}
             {activeTab === 'reviews' && (
                 <div id='reviews'>
                     {/* Movie Info */}
                     <div className="m-2">
                         {/* Buttons */}
+                    
                         <div className="flex w-[80px]">
                             <button className="text-4xl">﹢</button>
                             <button className="text-2xl w-[36px]">&#9829;</button>
@@ -219,6 +232,7 @@ function PageSingle(){
             )}
         </div>
     )
+    
 }
 
 

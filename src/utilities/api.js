@@ -122,7 +122,7 @@ function getMovieDetails(movieId) {
     });
 }
 
-function getCreditDetails(creditId){
+function getCreditDetails(movieId) {
   const options = {
     method: 'GET',
     headers: {
@@ -131,11 +131,15 @@ function getCreditDetails(creditId){
     }
   };
 
-  return fetch(`${API_ENDPOINT}/credit/${creditId}`, options)
-  .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-
+  return fetch(`${API_ENDPOINT}/movie/${movieId}/credits`, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return response.json();
+    })
+    .catch(err => {
+      throw err;
+    });
 }
-
 export {getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, fetchTrailers, getMovieDetails, getCreditDetails, IMAGE_URL_BASE, API_ENDPOINT };
