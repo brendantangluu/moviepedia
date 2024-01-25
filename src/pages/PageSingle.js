@@ -136,6 +136,7 @@ function PageSingle(){
             )}
             {activeTab === 'cast' && (
                 <div className="relative overflow-x-scroll whitespace-nowrap p-2">
+                    <h2 className="font-bold mb-4 text-2xl sticky left-1">Top Billed Cast</h2>
                     <ol className="flex list-none m-0 p-0" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>    
                         {console.log(creditData)}
                         {creditData.cast.length > 0 &&
