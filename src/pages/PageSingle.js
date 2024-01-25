@@ -12,6 +12,7 @@ function PageSingle(){
     const [loadedTrailer, setLoadedTrailer] = useState();
     const [activeTab, setActiveTab] = useState('about');
     const [creditData, setCreditData] = useState();
+    const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
 
     const scrollToSection = (section) => {
         setActiveTab(section);
@@ -43,7 +44,7 @@ function PageSingle(){
                     console.error('Error fetching credits:', creditError);
                 })
                 console.log(data);
-                
+
             })
             .catch((err) => {
                 console.error('Error fetching movie details:', err);
@@ -51,9 +52,8 @@ function PageSingle(){
     }, [id]);
     
     if (!loadedMovieData) {
-        // You can render a loading state here
         return <p>Loading...</p>;
-      }
+    }
 
     const imagePath = `${IMAGE_URL_BASE}/w780${loadedMovieData.backdrop_path}`;
     const truncatedOverview = loadedMovieData.overview.length > 30 ? `${loadedMovieData.overview.slice(0, 120)}...` : loadedMovieData.overview;
@@ -65,10 +65,10 @@ function PageSingle(){
             <img src={imagePath} alt="" />
             <nav className="m-5 mx-6 text-base">
                         <ul className="flex justify-between">
-                        <li onClick={() => scrollToSection('about')}>About</li>
-                        <li onClick={() => scrollToSection('cast')}>Cast</li>
-                        <li onClick={() => scrollToSection('reviews')}>Reviews</li>
-                        <li onClick={() => scrollToSection('more')}>More</li>
+                            <li onClick={() => { scrollToSection('about') }} className={`${activeTab === "about" ? activeCategoryHighlight : ""} cursor-pointer`}>About</li>
+                            <li onClick={() => { scrollToSection('cast') }} className={`${activeTab === "cast" ? activeCategoryHighlight : ""} cursor-pointer`}>Cast</li>
+                            <li onClick={() => { scrollToSection('reviews') }} className={`${activeTab === "reviews" ? activeCategoryHighlight : ""} cursor-pointer`}>Reviews</li>
+                            <li onClick={() => { scrollToSection('more') }} className={`${activeTab === "more" ? activeCategoryHighlight : ""} cursor-pointer`}>More</li>
                         </ul>
                     </nav>
             {activeTab === 'about' && (

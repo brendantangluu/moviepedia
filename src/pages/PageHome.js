@@ -4,9 +4,9 @@ import { CarouselDefault } from "../components/BannerSlider";
 import MoviesContainer from "../components/MoviesContainer";
 
 function PageHome() {
-  const [activeCategory, setActiveCategory] = useState("popular");
+  const [activeCategory, setActiveCategory] = useState("Popular");
   const [movies, setMovies] = useState([]);
-  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500");
+  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500 border-b-2 border-blue-500");
 
   const fetchMoviesByCategory = async (category) => {
     try {
@@ -37,11 +37,6 @@ function PageHome() {
     fetchMoviesByCategory(activeCategory);
   }, [activeCategory]);
   
-  useEffect(() => {
-    // Set activeCategoryHighlight to "text-blue-500" when the component mounts
-    
-    setActiveCategoryHighlight("text-blue-500");
-  }, []);
   
 
   return (
