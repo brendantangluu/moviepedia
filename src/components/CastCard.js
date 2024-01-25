@@ -9,10 +9,10 @@ function CastCard({ castData }) {
 
   return (
     <div>
-      <div className = "border">
-        <img className = "min-w-[175px]" src={CastProfileImagePath} alt="" />
-          <p className="text-sm text-center pt-2 pb-1 font-bold bg-white text-black break-words">{castData.name}</p>
-          <p className="text-xs text-center pb-2 bg-white text-black break-words">{castData.character}</p>
+      <div className = "border rounded-lg">
+        <img className = "min-w-[175px] rounded-lg" src={CastProfileImagePath} alt="" />
+          <p className="text-sm text-center pt-2 pb-1 font-bold break-words">{castData.name}</p>
+          <p className="text-xs text-center pb-2 break-words">{castData.character}</p>
       </div>
     </div>
   ); 
