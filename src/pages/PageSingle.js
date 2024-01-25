@@ -16,6 +16,7 @@ function PageSingle(){
     const [creditData, setCreditData] = useState();
     const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
 
+    const [currentIndex, setCurrentIndex] = useState(0);
     const scrollToSection = (section) => {
         setActiveTab(section);
         const e = document.getElementById(section);
@@ -63,7 +64,16 @@ function PageSingle(){
 
     const imagePath = `${IMAGE_URL_BASE}/w780${loadedMovieData.backdrop_path}`;
     const truncatedOverview = loadedMovieData.overview.length > 30 ? `${loadedMovieData.overview.slice(0, 120)}...` : loadedMovieData.overview;
-   
+    
+
+
+    const handleNext = () => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % creditData.cast.length);
+    };
+  
+    const handlePrev = () => {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + creditData.cast.length) % creditData.cast.length);
+    };
 
 
     return(
@@ -125,15 +135,17 @@ function PageSingle(){
                 </div>
             )}
             {activeTab === 'cast' && (
-                <div>    
-                    {console.log(creditData)}
-                    {creditData.cast.length > 0 &&
-                    creditData.cast.map((castData) => (
-                        <div key={castData.id}>
-                        <CastCard castData={castData} />
-                        </div>
-                    ))}
-              </div>
+                <div className="relative overflow-x-scroll whitespace-nowrap p-2">
+                    <ol className="flex list-none m-0 p-0" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>    
+                        {console.log(creditData)}
+                        {creditData.cast.length > 0 &&
+                        creditData.cast.slice(0, 10).map((castData) => (
+                            <li key={castData.id} className="pr-5 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2">
+                                <CastCard castData={castData} />
+                            </li>
+                        ))}
+                    </ol>
+                </div>
             )}
             {activeTab === 'reviews' && (
                 <div id='reviews'>
