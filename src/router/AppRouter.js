@@ -1,20 +1,24 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import PageHome from "../pages/PageHome";
-import WorkShop from "../pages/WorkShop";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Watchlist from "../pages/PageWatchList";
+import PageAbout from "../pages/PageAbout";
+import PageSingle from "../pages/PageSingle";
+import { GlobalProvider } from "../context/GlobalContext";
+
 
 function AppRouter(){
     return(
     <BrowserRouter>
-        <Header/>
-        <Routes>
-            <Route path="/" element = {<PageHome/>} />
-            <Route path="/workshop" element = {<WorkShop/>}/>
-            <Route path="/PageWatchList" element ={<Watchlist/>}/>
-        </Routes>
-        <Footer/>
+        <GlobalProvider>
+            <Header/>
+            <Routes>
+                <Route path="/" element = {<PageHome/>} />
+                <Route path="/single/:id/about" element = {<PageSingle/>}/>
+                <Route path="/about" element = {<PageAbout/>}/>
+            </Routes>
+            <Footer/>
+        </GlobalProvider>
     </BrowserRouter>
     )
 }
