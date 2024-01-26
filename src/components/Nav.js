@@ -11,10 +11,10 @@ function Nav({ className }) {
           <NavLink to="/about">Watch List</NavLink>
         </li>
         <li className='m-4'>
-          <NavLink to="/portfolio">Favourites</NavLink>
+          <NavLink to="/favourites">Favourites</NavLink>
         </li>
         <li className='m-4'>
-          <NavLink to="/portfolio">About</NavLink>
+          <NavLink to="/about">About</NavLink>
         </li>
       </ul>
     </nav>
