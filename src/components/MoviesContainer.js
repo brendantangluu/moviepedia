@@ -23,8 +23,6 @@ function MoviesContainer({ title, moviesData }) {
             moviesData.map((movieData) => (
               <div key={movieData.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2">
                 <MovieCard movieData={movieData} />
-                <FavoriteButton movieData = {movieData}/>
-                
               </div>
             ))}
             

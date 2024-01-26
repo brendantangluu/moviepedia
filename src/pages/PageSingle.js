@@ -17,7 +17,7 @@ function PageSingle(){
     const [creditData, setCreditData] = useState();
     const [reviewData, setReviewData] = useState();
     const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
-
+    
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollToSection = (section) => {
         setActiveTab(section);
@@ -86,6 +86,21 @@ function PageSingle(){
     setCurrentIndex((prevIndex) => (prevIndex - 1 + creditData.cast.length) % creditData.cast.length);
     };
 
+    // Conditionals to render out color of rating circle
+    let borderClass, colorClass;
+    const ratingAverage = loadedMovieData.vote_average.toFixed(1);
+
+        if (ratingAverage >= 8) {
+            borderClass = "border-green-500";
+            colorClass = "text-green-500";
+        } else if (ratingAverage >= 5 && ratingAverage < 8) {
+            borderClass = "border-yellow-500";
+            colorClass = "text-yellow-500";
+        } else {
+            borderClass = "border-red-500";
+            colorClass = "text-red-500";
+        }
+    
 
     return(
         <div className="relative">
@@ -124,17 +139,9 @@ function PageSingle(){
                         {/* Movie Info - Rating and Date */}
                         <div className="flex">
                             <svg className = "mb-0.5 mr-1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                            {(() => {
-                                const ratingAverage = loadedMovieData.vote_average.toFixed(1);
-
-                                if (ratingAverage >= 8) {
-                                    return <p className="text-green-500">{ratingAverage}</p>;
-                                } else if (ratingAverage >= 5 && ratingAverage < 8) {
-                                    return <p className="text-yellow-500">{ratingAverage}</p>;
-                                } else if (ratingAverage < 5) {
-                                    return <p className="text-red-500">{ratingAverage}</p>;
-                                }
-                            })()}
+                            <p className={`border ${borderClass} rounded-full p-1 min-w-[34px] ${colorClass} text-center`}>
+                                {ratingAverage}
+                            </p>
                         </div>
 
                     </div>

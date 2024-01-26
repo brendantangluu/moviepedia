@@ -19,7 +19,7 @@ function FavoriteButton({ movieData }) {
     return (
         <button
             onClick={handleFavorite}
-            className={`favorite ${isFavorited ? "text-red" : ""}`}
+            className={`favorite ${isFavorited ? "text-red-500" : ""} text-xl ml-14`}
         >
             &#9829;
         </button>
