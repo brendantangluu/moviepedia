@@ -14,6 +14,7 @@ export function GlobalProvider({children}){
     function addToFavorites(favorite){
         const newFavorites = [...favorites, favorite];
         setFavorites(newFavorites);
+        console.log(newFavorites)
     }
 
 
@@ -22,12 +23,14 @@ export function GlobalProvider({children}){
             return fav.id !== favorite.id;
         });
         setFavorites(newFavorites);
+        console.log(newFavorites);
     }
 
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites));
     },[favorites]);
 
+    
     return(
         <GlobalContext.Provider
             value={{

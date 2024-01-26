@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies } from "../utilities/api";
 import { CarouselDefault } from "../components/BannerSlider";
 import MoviesContainer from "../components/MoviesContainer";
+import FavoriteButton from "../components/FavoriteButton";
 
 function PageHome() {
   const [activeCategory, setActiveCategory] = useState("Popular");
