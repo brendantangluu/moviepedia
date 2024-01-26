@@ -142,4 +142,28 @@ function getCreditDetails(movieId) {
       throw err;
     });
 }
-export {getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, fetchTrailers, getMovieDetails, getCreditDetails, IMAGE_URL_BASE, API_ENDPOINT };
+
+function getReviews(movieId){
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${API_TOKEN}`,
+    }
+  };
+
+  return fetch(`${API_ENDPOINT}/movie/${movieId}/reviews`, options)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Network response was not OK");
+      }
+      return response.json();
+    })
+    .catch(err => {
+      throw err;
+    });
+
+}
+
+
+export {getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, fetchTrailers, getMovieDetails, getCreditDetails, getReviews, IMAGE_URL_BASE, API_ENDPOINT };

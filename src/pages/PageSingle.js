@@ -1,7 +1,8 @@
-import { IMAGE_URL_BASE, fetchTrailers, getPopularMovies, getMovieDetails, getCreditDetails } from "../utilities/api";
+import { IMAGE_URL_BASE, fetchTrailers, getMovieDetails, getCreditDetails, getReviews } from "../utilities/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CastCard from "../components/CastCard";
+import Reviews from "../components/Reviews";
 
 
 
@@ -14,6 +15,7 @@ function PageSingle(){
     const [loadedTrailer, setLoadedTrailer] = useState();
     const [activeTab, setActiveTab] = useState('about');
     const [creditData, setCreditData] = useState();
+    const [reviewData, setReviewData] = useState();
     const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -51,7 +53,16 @@ function PageSingle(){
                     console.error('Error fetching credits:', creditError);
                 })
                 console.log(data);
-
+                
+                getReviews(id)
+                .then((data)=> {
+                    setReviewData(data);
+                    console.log(data);
+                })
+                .catch((reviewError)=>{
+                    console.error('Error fetching credits:', reviewError);
+                })
+                console.log(data);
             })
             .catch((err) => {
                 console.error('Error fetching movie details:', err);
@@ -68,11 +79,11 @@ function PageSingle(){
 
 
     const handleNext = () => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % creditData.cast.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % creditData.cast.length);
     };
   
     const handlePrev = () => {
-      setCurrentIndex((prevIndex) => (prevIndex - 1 + creditData.cast.length) % creditData.cast.length);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + creditData.cast.length) % creditData.cast.length);
     };
 
 
@@ -90,7 +101,7 @@ function PageSingle(){
             {activeTab === 'about' && (
                 <div id='about' className="flex flex-wrap mx-4 gap-4">
                     {/* Movie Info */}
-                    <div className="flex">
+                    <div className="flex flex-wrap flex-col">
                         {/* Buttons */}
                         {/* <div className="flex w-[80px]">
                             <button className="text-4xl">﹢</button>
@@ -102,7 +113,7 @@ function PageSingle(){
                         <h3>{loadedMovieData.release_date}</h3>
                         
                         {/* Map out Genre Array */}
-                        <div className="flex">
+                        <div className="flex text-center">
                             {loadedMovieData.genres.length > 0 && 
                                 loadedMovieData.genres.map((genre) => (
                                     <div key = {genre.id} className="mr-2 text-xs">
@@ -159,50 +170,10 @@ function PageSingle(){
             )}
             {activeTab === 'reviews' && (
                 <div id='reviews'>
-                    {/* Movie Info */}
-                    <div className="m-2">
-                        {/* Buttons */}
-                    
-                        <div className="flex w-[80px]">
-                            <button className="text-4xl">﹢</button>
-                            <button className="text-2xl w-[36px]">&#9829;</button>
-                        </div>
-
-                        {/* Movie Info */}
-                        <h2 className="font-bold text-2xl">{loadedMovieData.title}</h2>
-                        <h3>{loadedMovieData.release_date}</h3>
-
-                        {/* Movie Info - Rating and Date */}
-                        <div className="flex">
-                            <svg className = "mb-0.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                            <h3 className="text-sm ml-2">{loadedMovieData.vote_average.toFixed(1)}</h3>
-                        </div>
-
-                    </div>
-
-                    {/* Movie Description */}
-                    <div className="mx-6 text-sm">
-                        <p></p>
-                    </div>
-
-                    {/* Movie Trailer */}
-                    <div>
-                        {loadedTrailer ? (
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={loadedTrailer}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                    ) : (
-                        <p>No Final Trailer available</p>
-                    )}
-                    </div>
-
-
+                    {reviewData.results.length > 0 &&
+                        reviewData.results.map((reviewData) => (
+                            <Reviews reviewData={reviewData} />
+                        ))}
                 </div>
             )}
             {activeTab === 'more' && (
