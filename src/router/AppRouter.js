@@ -1,26 +1,27 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PageHome from "../pages/PageHome";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PageAbout from "../pages/PageAbout";
 import PageSingle from "../pages/PageSingle";
 import { GlobalProvider } from "../context/GlobalContext";
+import Watchlist from "../pages/PageWatchList";
 
-
-function AppRouter(){
-    return(
+function AppRouter() {
+  return (
     <BrowserRouter>
-        <GlobalProvider>
-            <Header/>
-            <Routes>
-                <Route path="/" element = {<PageHome/>} />
-                <Route path="/single/:id/about" element = {<PageSingle/>}/>
-                <Route path="/about" element = {<PageAbout/>}/>
-            </Routes>
-            <Footer/>
-        </GlobalProvider>
+      <GlobalProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<PageHome />} />
+          <Route path="/single/:id/about" element={<PageSingle />} />
+          <Route path="/about" element={<PageAbout />} />
+          <Route path="/watchlist" element={<Watchlist />} />
+        </Routes>
+        <Footer />
+      </GlobalProvider>
     </BrowserRouter>
-    )
+  );
 }
 
 export default AppRouter;

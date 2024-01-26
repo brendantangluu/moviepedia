@@ -8,7 +8,7 @@ function Nav({ className }) {
           <NavLink to="/">Profile</NavLink>
         </li>
         <li className='m-4'>
-          <NavLink to="/PageWatchList">Watch List</NavLink>
+          <NavLink to="/watchlist">Watch List</NavLink>
         </li>
         <li className='m-4'>
           <NavLink to="/portfolio">Favourites</NavLink>
