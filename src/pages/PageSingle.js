@@ -101,7 +101,7 @@ function PageSingle(){
             {activeTab === 'about' && (
                 <div id='about' className="flex flex-wrap mx-4 gap-4">
                     {/* Movie Info */}
-                    <div className="flex flex-wrap flex-col">
+                    <div className="flex flex-wrap flex-col gap-1">
                         {/* Buttons */}
                         {/* <div className="flex w-[80px]">
                             <button className="text-4xl">﹢</button>
@@ -123,8 +123,18 @@ function PageSingle(){
                         </div>
                         {/* Movie Info - Rating and Date */}
                         <div className="flex">
-                            <svg className = "mb-0.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-                            <h3 className="text-sm ml-2">{loadedMovieData.vote_average.toFixed(1)}</h3>
+                            <svg className = "mb-0.5 mr-1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
+                            {(() => {
+                                const ratingAverage = loadedMovieData.vote_average.toFixed(1);
+
+                                if (ratingAverage >= 8) {
+                                    return <p className="text-green-500">{ratingAverage}</p>;
+                                } else if (ratingAverage >= 5 && ratingAverage < 8) {
+                                    return <p className="text-yellow-500">{ratingAverage}</p>;
+                                } else if (ratingAverage < 5) {
+                                    return <p className="text-red-500">{ratingAverage}</p>;
+                                }
+                            })()}
                         </div>
 
                     </div>
