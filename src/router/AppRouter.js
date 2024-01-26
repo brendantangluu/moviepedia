@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import PageAbout from "../pages/PageAbout";
 import PageSingle from "../pages/PageSingle";
 import { GlobalProvider } from "../context/GlobalContext";
+import Favourites from "../pages/PageFavourites";
 
 
 function AppRouter(){
@@ -16,6 +17,7 @@ function AppRouter(){
                 <Route path="/" element = {<PageHome/>} />
                 <Route path="/single/:id/about" element = {<PageSingle/>}/>
                 <Route path="/about" element = {<PageAbout/>}/>
+                <Route path="/favourites" element={<Favourites />} />
             </Routes>
             <Footer/>
         </GlobalProvider>
