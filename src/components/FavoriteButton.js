@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 function FavoriteButton({ movieData }) {
-    const { favorites, addToFavorites, removeFromFavorites } = useContext(GlobalContext);
+    const { favorites, wl, addToFavorites, removeFromFavorites , a2w, rfw } = useContext(GlobalContext);
 
     const isFavorited = favorites.find((fav) => fav.id === movieData.id);
 
@@ -19,7 +19,7 @@ function FavoriteButton({ movieData }) {
     return (
         <button
             onClick={handleFavorite}
-            className={`favorite ${isFavorited ? "text-red-500" : ""} text-xl ml-14`}
+            className={`favorite ${isFavorited ? "text-red-500" : ""} text-xl ml-14` }
         >
             &#9829;
         </button>

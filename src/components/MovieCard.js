@@ -1,6 +1,7 @@
 import { IMAGE_URL_BASE } from "../utilities/api";
 import { Link } from 'react-router-dom';
 import FavoriteButton from "./FavoriteButton";
+import WatchListButton from "./WatchListButton";
 
 const defaultMovieData = {
   "adult": false,
@@ -45,6 +46,7 @@ function MovieCard({ movieData = defaultMovieData }) {
               {ratingAverage}
             </p>
             <FavoriteButton movieData = {movieData}/>
+            <WatchListButton/>
       </div>
 
 

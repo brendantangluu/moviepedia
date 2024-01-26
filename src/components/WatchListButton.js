@@ -1,31 +1,32 @@
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
-function FavoriteButton({ movieData }) {
-    const { favorites, addToFavorites, removeFromFavorites } = useContext(GlobalContext);
+function WatchListButton({ movieData }) {
+    const { favourites ,watchlist, a2f, rfromfavs, addToWatchlist, removeFromWatchlist } = useContext(GlobalContext);
 
-    const isFavorited = favorites.find((fav) => fav.id === movieData.id);
+    const isFavorited = watchlist.find((fav) => fav.id === movieData.id);
 
     function handleFavorite(event) {
         event.stopPropagation();
 
         if (isFavorited) {
-            removeFromFavorites(movieData);
+            removeFromWatchlist(movieData);
+            console.log(removeFromWatchlist(movieData))
         } else {
-            addToFavorites(movieData);
+            addToWatchlist(movieData);
         }
     }
 
     return (
         <button
             onClick={handleFavorite}
-            className={`favorite ${isFavorited ? "text-red-500" : ""} text-xl ml-14`}
+            className={`favorite ${isFavorited ? "text-red-500" : ""} text-xl ml-14` }
         >
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" fill={`${isFavorited ? "blue" : "white"}`} viewBox="0 0 30 30">
-                <path d="M23,27l-8-7l-8,7V5c0-1.105,0.895-2,2-2h12c1.105,0,2,0.895,2,2V27z"></path>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 24 24">
+<path d="M 6.0097656 2 C 4.9143111 2 4.0097656 2.9025988 4.0097656 3.9980469 L 4 22 L 12 19 L 20 22 L 20 20.556641 L 20 4 C 20 2.9069372 19.093063 2 18 2 L 6.0097656 2 z M 6.0097656 4 L 18 4 L 18 19.113281 L 12 16.863281 L 6.0019531 19.113281 L 6.0097656 4 z"></path>
+</svg>  
         </button>
     );
 }
 
-export default FavoriteButton;
+export default WatchListButton;
