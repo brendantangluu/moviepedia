@@ -13,7 +13,6 @@ function shuffleArray(array) {
   }
 
 function CarouselDefault({moviesData}) {
-    console.log("moviesData:", moviesData);
     
     const shuffledMoviesData = [...moviesData];
     shuffleArray(shuffledMoviesData)

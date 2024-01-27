@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import CastCard from "../components/CastCard";
 import Reviews from "../components/Reviews";
 import filterVideos from "../utilities/toolbelt";
+import Trailer from "../components/Trailer";
 
 
 
@@ -17,7 +18,6 @@ function PageSingle(){
     const [activeTab, setActiveTab] = useState('about');
     const [creditData, setCreditData] = useState();
     const [reviewData, setReviewData] = useState();
-    const [youtubeMovieData, setYoutubeMovieData] = useState();
     const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
     
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,191 +29,6 @@ function PageSingle(){
         }
 
     }
-   const pbj =  {
-    "id": 787699,
-    "results": [
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "They Call Me Lofty",
-            "key": "V5P7q4WJAzg",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Clip",
-            "official": true,
-            "published_at": "2024-01-23T16:00:19.000Z",
-            "id": "65afffba67b613010c60e13a"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Ten Minute Preview",
-            "key": "YkQVETRgaBc",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Clip",
-            "official": true,
-            "published_at": "2024-01-22T12:56:51.000Z",
-            "id": "65aed6f525cd8500ea0d8dc8"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Official IMAX® Interview",
-            "key": "AIytAE_X1zQ",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Featurette",
-            "official": true,
-            "published_at": "2023-12-15T23:05:21.000Z",
-            "id": "6586b882b0cd205394575aa7"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Soundtrack Out Now!",
-            "key": "vCcGYxy6PNA",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Teaser",
-            "official": true,
-            "published_at": "2023-12-08T18:18:07.000Z",
-            "id": "6573b5a3bbe1dd0138cedc81"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "World Premiere",
-            "key": "Df1-tQ8IiDA",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Featurette",
-            "official": true,
-            "published_at": "2023-12-07T15:15:46.000Z",
-            "id": "6572a61f6f6a9901392b232b"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Chocolate Statue Reveal",
-            "key": "pkoqu0wZr_s",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Featurette",
-            "official": true,
-            "published_at": "2023-12-06T08:00:29.000Z",
-            "id": "657032ce41ad8d06e3cc1ab5"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Recipe for an Icon",
-            "key": "a1LcSbGRpIE",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Behind the Scenes",
-            "official": true,
-            "published_at": "2023-12-05T17:25:19.000Z",
-            "id": "65700711d18fb9013aa85bab"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Becoming Wonka - Featurette",
-            "key": "9Dup3jnovFs",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Featurette",
-            "official": true,
-            "published_at": "2023-11-24T17:47:00.000Z",
-            "id": "656383fcb234b900acfb9747"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "\"A Good Chocolate\" Clip",
-            "key": "JXIpIVelQkc",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Clip",
-            "official": true,
-            "published_at": "2023-11-14T17:00:16.000Z",
-            "id": "65551212d4fe04011b9138ce"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "\"Funny Little Man\" Clip",
-            "key": "CsU0Yq6_LyQ",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Clip",
-            "official": true,
-            "published_at": "2023-11-14T17:00:07.000Z",
-            "id": "6555120c53866e00ff06aed9"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "\"Try One\" Clip",
-            "key": "19bhnCBezs4",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Clip",
-            "official": true,
-            "published_at": "2023-11-14T17:00:02.000Z",
-            "id": "65551206ac4161013b4aa62e"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Dream TV Spot",
-            "key": "d2lVg-b_E2g",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Teaser",
-            "official": true,
-            "published_at": "2023-11-13T21:00:05.000Z",
-            "id": "6552b2790816c700c3da0e8f"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Watch Full Trailer Now!",
-            "key": "NiCEEIxI1ME",
-            "site": "YouTube",
-            "size": 1080,
-            "type": "Teaser",
-            "official": true,
-            "published_at": "2023-10-12T16:07:23.000Z",
-            "id": "6528549c81383100fe3df66a"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Trailer #2",
-            "key": "wYmtRhKvmVE",
-            "site": "YouTube",
-            "size": 2160,
-            "type": "Trailer",
-            "official": true,
-            "published_at": "2023-10-12T16:00:44.000Z",
-            "id": "652854bffd63005d7a2d884b"
-        },
-        {
-            "iso_639_1": "en",
-            "iso_3166_1": "US",
-            "name": "Official Trailer",
-            "key": "otNh9bTjXWg",
-            "site": "YouTube",
-            "size": 2160,
-            "type": "Trailer",
-            "official": true,
-            "published_at": "2023-07-11T16:00:39.000Z",
-            "id": "64ad8035b686b9010e0dcf7f"
-        }
-    ]
-}
 
     useEffect(() => {
         getMovieDetails(id)
@@ -223,18 +38,9 @@ function PageSingle(){
                 // fetchTrailers returning undefined, need to fix
                 fetchTrailers(id)
                     .then((data) => {
-                        // console.log(data)
-                        // console.log(data.id)
-                        // console.log(data.results)
-                        // console.log(typeof data.results)
-                        const Trailer = filterVideos(data.results);
-
-
-                        console.log(Trailer) //why returns empty?
-                        setYoutubeMovieData(data)
-                        setLoadedTrailer(Trailer);
-                       
-
+                        const trailer = filterVideos(data.results);
+                        console.log(trailer) //why returns empty?
+                        setLoadedTrailer(trailer);
                     })
                     .catch((trailerError) => {
                         console.error('Error fetching trailers:', trailerError);
@@ -340,19 +146,7 @@ function PageSingle(){
 
                     {/* Movie Trailer */}
                     <div>
-                        {loadedTrailer ? (
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={`https://youtube.com/embed/${loadedTrailer[0].key}`}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                    ) : (
-                        <p>No Final Trailer available</p>
-                    )}
+                    <Trailer trailers={loadedTrailer}/>
                     </div>
 
 
@@ -408,22 +202,6 @@ function PageSingle(){
                     </div>
 
                     {/* Movie Trailer */}
-                    <div>
-                        {loadedTrailer ? (
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={loadedTrailer}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                    ) : (
-                        <p>No Final Trailer available</p>
-                    )}
-                    </div>
-
 
                 </div>
             )}
