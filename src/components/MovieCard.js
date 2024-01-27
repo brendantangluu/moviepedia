@@ -46,7 +46,7 @@ function MovieCard({ movieData = defaultMovieData }) {
               {ratingAverage}
             </p>
             <FavoriteButton movieData = {movieData}/>
-            <WatchListButton/>
+          
       </div>
 
 
@@ -54,7 +54,9 @@ function MovieCard({ movieData = defaultMovieData }) {
         <h3 className="text-sm">{movieData.release_date}</h3>
         <h4 className="text-base sm:text-lg font-semibold my-2 leading-tight">{truncatedTitle}</h4>
       </div>
+      <WatchListButton movieData = {movieData}/>
     </div>
+    
   );
 }
 

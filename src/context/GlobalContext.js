@@ -25,7 +25,6 @@ export function GlobalProvider({children}){
     function addToFavorites(favorite){
         const newFavorites = [...favorites, favorite];
         setFavorites(newFavorites);
-        console.log(newFavorites)
     }
 
 
@@ -36,15 +35,15 @@ export function GlobalProvider({children}){
         setFavorites(newFavorites);
     }
 
-    function addToWatchlist(watchlist){
-        const newWatchlist = [...watchlist, watchlist];
+    function addToWatchlist(watchlistitem){
+        const newWatchlist = [...watchlist, watchlistitem];
         setWatchlist(newWatchlist);
     }
 
 
-    function removeFromWatchlist(watchlist){
+    function removeFromWatchlist(watchlistitem){
         const newWatchlist = watchlist.filter((wl)=>{
-            return wl.id !== watchlist.id;
+            return wl.id !== watchlistitem.id;
         });
         setWatchlist(newWatchlist);
     }
