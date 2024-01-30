@@ -1,11 +1,7 @@
 import { Carousel } from "@material-tailwind/react";
 import Banner from "./Banner";
 
-// Creates a function randomizing the array of banner images
-// This ensures that each time a user requests it will output 4 random banners (from Popular Movies) to the carousel
-
 function shuffleArray(array) {
-    // Function to shuffle the array using Fisher-Yates algorithm
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
