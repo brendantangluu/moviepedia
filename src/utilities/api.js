@@ -1,6 +1,7 @@
 const API_TOKEN = process.env.REACT_APP_TMDB_TOKEN; 
 const API_ENDPOINT = "https://api.themoviedb.org/3";
-const IMAGE_URL_BASE = "https://image.tmdb.org/t/p"
+const IMAGE_URL_BASE = "https://image.tmdb.org/t/p";
+const SEARCH_BASE =  "&include_adult=false&language=en-US&page=1";
 
 function getPopularMovies(){
     const options = {
@@ -172,4 +173,30 @@ function getReviews(movieId){
 }
 
 
-export {getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, fetchTrailers, getMovieDetails, getCreditDetails, getReviews, IMAGE_URL_BASE, API_ENDPOINT };
+// const search = 'pizza';
+function discoverMovies(search){
+  
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${API_TOKEN}`,
+    }
+  };
+  return fetch(`${API_ENDPOINT}/search/movie?query=${search}&include_adult=false&language=en-US&page=1`, options)
+    .then(response => {
+      if (!response.ok) {
+        console.log(`${API_ENDPOINT}/${search}${SEARCH_BASE}`)
+        throw new Error(`${API_ENDPOINT}/${search}${SEARCH_BASE}`);
+      }
+      return response.json();
+    })
+    .catch(err => {
+      throw err;
+    });
+
+}
+
+// fetch('https://api.themoviedb.org/3/search/movie?query=pizza&include_adult=false&language=en-US&page=1', options)
+
+export {getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, fetchTrailers, getMovieDetails, getCreditDetails, getReviews, discoverMovies, IMAGE_URL_BASE, API_ENDPOINT };
