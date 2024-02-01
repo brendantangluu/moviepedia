@@ -34,6 +34,7 @@ function PageSingle(){
         getMovieDetails(id)
             .then((data) => {
                 setLoadedMovieData(data);
+                console.log(loadedMovieData)
               
                 // fetchTrailers returning undefined, need to fix
                 fetchTrailers(id)
