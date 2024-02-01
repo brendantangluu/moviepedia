@@ -103,6 +103,7 @@ function fetchTrailers(movieId){
       }
       return response.json();
     })
+    
     .catch(err => {
       throw err;
     });

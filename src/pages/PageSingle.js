@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import CastCard from "../components/CastCard";
 import Reviews from "../components/Reviews";
 import filterVideos from "../utilities/toolbelt";
+import Trailer from "../components/Trailer";
 
 
 
@@ -17,7 +18,6 @@ function PageSingle(){
     const [activeTab, setActiveTab] = useState('about');
     const [creditData, setCreditData] = useState();
     const [reviewData, setReviewData] = useState();
-    const [youtubeMovieData, setYoutubeMovieData] = useState();
     const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
     
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -35,22 +35,14 @@ function PageSingle(){
         getMovieDetails(id)
             .then((data) => {
                 setLoadedMovieData(data);
+                console.log(loadedMovieData)
               
                 // fetchTrailers returning undefined, need to fix
                 fetchTrailers(id)
                     .then((data) => {
-                        // console.log(data)
-                        // console.log(data.id)
-                        // console.log(data.results)
-                        // console.log(typeof data.results)
-                        const Trailer = filterVideos(data.results);
-
-
-                        console.log(Trailer) //why returns empty?
-                        setYoutubeMovieData(data)
-                        setLoadedTrailer(Trailer);
-                       
-
+                        const trailer = filterVideos(data.results);
+                        console.log(trailer) //why returns empty?
+                        setLoadedTrailer(trailer);
                     })
                     .catch((trailerError) => {
                         console.error('Error fetching trailers:', trailerError);
@@ -156,19 +148,7 @@ function PageSingle(){
 
                     {/* Movie Trailer */}
                     <div>
-                        {loadedTrailer ? (
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={`https://youtube.com/embed/${loadedTrailer[0].key}`}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                    ) : (
-                        <p>No Final Trailer available</p>
-                    )}
+                    <Trailer trailers={loadedTrailer}/>
                     </div>
 
 
@@ -224,22 +204,6 @@ function PageSingle(){
                     </div>
 
                     {/* Movie Trailer */}
-                    <div>
-                        {loadedTrailer ? (
-                        <iframe
-                            width="100%"
-                            height="315"
-                            src={loadedTrailer}
-                            title="YouTube video player"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
-                    ) : (
-                        <p>No Final Trailer available</p>
-                    )}
-                    </div>
-
 
                 </div>
             )}

@@ -42,7 +42,7 @@ function MovieCard({ movieData = defaultMovieData }) {
       </Link>
       <div className="flex w-[136px] align-middle items-center mb-2.5">
           <svg className = "mb-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 24" fill="yellow"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-            <p className={`border ${borderClass} rounded-full p-1 min-w-[34px] text-center ml-1`}>
+            <p className={`border ${borderClass} rounded-full p-1 min-w-[34px] text-center ml-1 text-xs`}>
               {ratingAverage}
             </p>
             <FavoriteButton movieData = {movieData}/>
