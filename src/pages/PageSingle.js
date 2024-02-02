@@ -102,7 +102,6 @@ function PageSingle(){
             borderClass = "border-red-500";
         }
 
-
     return(
         <div className="relative">
             <img src={imagePath} alt="" />
@@ -170,10 +169,13 @@ function PageSingle(){
             )}
             {activeTab === 'reviews' && (
                 <div id='reviews'>
-                    {reviewData.results.length > 0 &&
-                        reviewData.results.map((reviewData) => (
-                            <Reviews reviewData={reviewData} />
-                        ))}
+                    {reviewData.results.length > 0 ? (
+                    reviewData.results.map((reviewData) => (
+                        <Reviews key={reviewData.id} reviewData={reviewData} />
+                    ))
+                    ) : (
+                        <p className="ml-2">No reviews have been made!</p>
+                    )}
                 </div>
             )}
             {activeTab === 'more' && (
