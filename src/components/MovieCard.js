@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { IMAGE_URL_BASE } from "../utilities/api";
 import { Link } from 'react-router-dom';
@@ -21,28 +21,55 @@ const defaultMovieData = {
 };
 
 function MovieCard({ movieData = defaultMovieData }) {
+  const [isTapped, setIsTapped] = useState(false);
+  const [isHoverEnabled, setIsHoverEnabled] = useState(false);
   const { favorites, addToFavorites, removeFromFavorites } = useContext(GlobalContext);
   const isFavorite = favorites.some((fav) => fav.id === movieData.id);
 
   const handleToggleFavorite = () => {
-    if (isFavorite) {
-      removeFromFavorites(movieData);
-    } else {
-      addToFavorites(movieData);
-    }
+    isFavorite ? removeFromFavorites(movieData) : addToFavorites(movieData);
   };
 
   const imagePath = `${IMAGE_URL_BASE}/w780${movieData.poster_path}`;
   const truncatedTitle = movieData.title.length > 30 ? `${movieData.title.slice(0, 20)}...` : movieData.title;
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsHoverEnabled(window.innerWidth >= 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleInteractionStart = () => !isHoverEnabled && setIsTapped(!isTapped);
+  const handleMouseEnter = () => isHoverEnabled && setIsTapped(true);
+  const handleMouseLeave = () => isHoverEnabled && setIsTapped(false);
+
   return (
     <div className="w-[136px] flex flex-col items-center relative">
-      <Link to={`/single/${movieData.id}/about`}>
+      <div
+        className={`relative group ${isTapped ? 'opacity-85' : ''} ${isHoverEnabled ? 'hover:opacity-85' : ''}`}
+        onClick={handleInteractionStart}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <img className="h-[204px] object-cover mb-2" src={imagePath} alt="" />
-      </Link>
+        {isTapped && (
+          <div className="overlay absolute top-0 left-0 w-full h-full bg-black opacity-90 flex items-center justify-center">
+            <Link to={`/single/${movieData.id}/about`}>
+              <button className="more-info-btn bg-logo text-white px-4 py-2 rounded">
+                More Info
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
+
       <div className="flex w-[136px] align-middle items-center mb-2.5">
         <svg className="mb-0.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
-          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
         </svg>
         <h4 className="text-sm ml-2">{movieData.vote_average.toFixed(1)}</h4>
       </div>
