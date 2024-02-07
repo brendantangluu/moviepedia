@@ -1,7 +1,7 @@
+import { useContext, useState, useEffect } from 'react';
+import { GlobalContext } from '../context/GlobalContext';
 import { IMAGE_URL_BASE } from "../utilities/api";
 import { Link } from 'react-router-dom';
-import FavoriteButton from "./FavoriteButton";
-import WatchListButton from "./WatchListButton";
 
 const defaultMovieData = {
   "adult": false,
@@ -21,42 +21,71 @@ const defaultMovieData = {
 };
 
 function MovieCard({ movieData = defaultMovieData }) {
+  const [isTapped, setIsTapped] = useState(false);
+  const [isHoverEnabled, setIsHoverEnabled] = useState(false);
+  const { favorites, addToFavorites, removeFromFavorites } = useContext(GlobalContext);
+  const isFavorite = favorites.some((fav) => fav.id === movieData.id);
+
+  const handleToggleFavorite = () => {
+    isFavorite ? removeFromFavorites(movieData) : addToFavorites(movieData);
+  };
+
   const imagePath = `${IMAGE_URL_BASE}/w780${movieData.poster_path}`;
   const truncatedTitle = movieData.title.length > 30 ? `${movieData.title.slice(0, 20)}...` : movieData.title;
-  
-  // Conditionals to render out color of rating circle
-  let borderClass;
-  const ratingAverage = movieData.vote_average.toFixed(1);
 
-      if (ratingAverage >= 8) {
-          borderClass = "border-green-500";
-      } else if (ratingAverage >= 5 && ratingAverage < 8) {
-          borderClass = "border-yellow-500";
-      } else {
-          borderClass = "border-red-500";
-      }
+  useEffect(() => {
+    const handleResize = () => {
+      setIsHoverEnabled(window.innerWidth >= 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const handleInteractionStart = () => !isHoverEnabled && setIsTapped(!isTapped);
+  const handleMouseEnter = () => isHoverEnabled && setIsTapped(true);
+  const handleMouseLeave = () => isHoverEnabled && setIsTapped(false);
   return (
     <div className="w-[136px] flex flex-col items-center relative">
-      <Link to ={`/single/${movieData.id}/about`}>
+      <div
+        className={`relative group ${isTapped ? 'opacity-85' : ''} ${isHoverEnabled ? 'hover:opacity-85' : ''}`}
+        onClick={handleInteractionStart}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <img className="h-[204px] object-cover mb-2" src={imagePath} alt="" />
-      </Link>
-      <div className="flex w-[136px] align-middle items-center mb-2.5">
-          <svg className = "mb-0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 24" fill="yellow"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>
-            <p className={`border ${borderClass} rounded-full p-1 min-w-[34px] text-center ml-1 text-xs`}>
-              {ratingAverage}
+        {isTapped && (
+          <div className="overlay absolute top-0 left-0 w-full h-full bg-black opacity-90 flex flex-col items-center justify-between p-2">
+            <p className='line-clamp-3 text-xs w-[100px] h-[100px] overflow-hidden'>
+              {movieData.overview}
             </p>
-            <FavoriteButton movieData = {movieData}/>
-          
+            <Link to={`/single/${movieData.id}/about`}>
+              <button className="more-info-btn bg-logo text-white px-2 py-1 rounded mb-2 text-sm">
+                More Info
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
 
-
+      <div className="flex w-[136px] align-middle items-center mb-2.5">
+        <svg className="mb-0.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="white">
+          <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z" />
+        </svg>
+        <h4 className="text-sm ml-2">{movieData.vote_average.toFixed(1)}</h4>
+      </div>
+      <button
+        className={`absolute bottom-16 right-0 ${isFavorite ? 'text-red-500' : 'text-gray-500'}`}
+        onClick={handleToggleFavorite}
+      >
+        &#9829;
+      </button>
       <div className="title-and-release text-center max-w-[120px] whitespace-normal">
         <h3 className="text-sm">{movieData.release_date}</h3>
         <h4 className="text-base sm:text-lg font-semibold my-2 leading-tight">{truncatedTitle}</h4>
       </div>
-      <WatchListButton movieData = {movieData}/>
     </div>
-    
   );
 }
 
