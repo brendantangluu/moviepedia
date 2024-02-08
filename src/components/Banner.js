@@ -18,10 +18,10 @@ function Banner({movieData}) {
         }
 
     return(
-        <div className="relative lg:h-[600px]">
+        <div className="relative lg:h-[800px]">
             <img className="h-full object-cover w-full opacity-40 lg:object-top" src={bannerPath} alt={movieData.name} />
             <div className="absolute bottom-10 left-4 md:bottom-24 md:left-8">
-                <h2 className="text-xl sm:text-3xl md:text-5xl xl:text-7xl uppercase font-black">{movieData.title}</h2>
+                <h2 className="text-base sm:text-3xl md:text-5xl xl:text-7xl uppercase font-black">{movieData.title}</h2>
                 <p className="text-sm sm:text-xl md:text-3xl md:mt-2 xl:text-5xl">{releaseDate}</p>
                 <MoreInfoButton movieData={movieData}/>
             </div>

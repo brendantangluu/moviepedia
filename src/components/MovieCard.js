@@ -91,7 +91,7 @@ function MovieCard({ movieData = defaultMovieData }) {
               <svg className="mb-0.5" xmlns="http://www.w3.org/2000/svg" width={`${matches ? "40" : "24"}`} height={`${matches ? "40" : "22"}`} viewBox="0 0 24 24" fill="yellow">
                   <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
               </svg>
-              <p className={`border ${borderClass} rounded-full p-1 min-w-[34px] text-center ml-1 text-xs md:text-2xl md:p-2 md:ml-2 md:mt-1`}>
+              <p className={`border-4 ${borderClass} rounded-full p-1 min-w-[34px] text-center ml-1 text-xs font-bold md:text-2xl md:p-2 md:ml-2 md:mt-1`}>
                   {ratingAverage}
               </p>
           </div>
@@ -100,8 +100,8 @@ function MovieCard({ movieData = defaultMovieData }) {
           </div>
         </div>
 
-        <div className="title-and-release text-center whitespace-normal md:w-auto">
-          <h3 className="text-sm md:text-xl 2xl:text-2xl">{movieData.release_date}</h3>
+        <div className="text-center whitespace-normal md:w-auto">
+          <h3 className="text-sm italic md:text-xl 2xl:text-2xl">{movieData.release_date}</h3>
           <h4 className="text-base sm:text-lg font-semibold my-2 leading-tight md:text-2xl 2xl:text-3xl">{movieData.title}</h4>
         </div>
       </div>
