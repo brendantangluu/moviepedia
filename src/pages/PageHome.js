@@ -9,7 +9,7 @@ import { Tab } from "@headlessui/react";
 function PageHome() {
   const [activeCategory, setActiveCategory] = useState("Popular");
   const [movies, setMovies] = useState([]);
-  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500");
+  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500 font-bold");
   const [showTrailer, setShowTrailer] = useState([]);
   const [banner, setBanner] = useState([]);
 
@@ -58,7 +58,7 @@ function PageHome() {
         <CarouselDefault moviesData={movies} />
       <div>
         <Tab.Group>
-          <Tab.List className="flex text-xs justify-evenly mx-2 my-4 sm:mx-4 sm:text-base md:text-2xl md:my-8 lg:justify-evenly lg:my-12 lg:text-3xl">
+          <Tab.List className="flex text-xs font-bold justify-between mx-2 my-4 sm:mx-4 sm:text-base md:text-2xl md:my-8 lg:justify-evenly lg:my-12 lg:text-3xl">
 
             <Tab onClick={() => { setActiveCategory("Popular"); }} className={`${activeCategory === "Popular" ? activeCategoryHighlight  : ""} cursor-pointer`}>
               Popular
@@ -79,7 +79,8 @@ function PageHome() {
           </Tab.List>
         </Tab.Group> 
         <MoviesContainer moviesData={movies} />
-        <div className="my-4 md:my-16 border">
+        <h2 className="text-sm font-bold mt-2 mx-2 sm:mx-4 sm:text-base md:text-2xl lg:text-3xl">Trailer</h2>
+        <div className="mx-2 my-4 sm:mx-4 md:my-8 border">
           <Trailer trailers = {showTrailer} />
         </div>
       </div>

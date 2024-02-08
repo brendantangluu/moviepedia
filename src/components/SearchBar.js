@@ -26,9 +26,10 @@ function SearchBar({ onSearch, setInput }) {
     };
   }, [inputValue, onSearch, setInput]);
 
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form action = {SearchBar} onSubmit={handleSubmit}>
         <label htmlFor={id}>Please specify:</label>
         <input id={id} value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
         <input type="submit" value="Search" />

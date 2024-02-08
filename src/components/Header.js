@@ -43,14 +43,14 @@ function Header() {
       <div className="flex justify-between items-center text-text md:h-24">
         <Logo/>
         <div className='flex'>
-          <button onClick={() => setShowSearch(!showSearch)}>
-          {/* <SearchBar
+          {/* <button onClick={() => setShowSearch(!showSearch)}>
+          <SearchBar
           ref={searchRef}
           onClick={handleInputClick}
-          className={`${showSearch ? 'block' : 'hidden'}`} /> */}
-          </button>
-          <button onClick={() => setShowNav(!showNav)} className="text-4xl m-1 p-2 md:hidden">
-            ☰
+          className={`${showSearch ? 'block' : 'hidden'}`} />
+          </button> */}
+          <button onClick={() => setShowNav(!showNav)} className="text-4xl m-1 p-4 md:hidden">
+            {`${showNav ? "X" : "☰" }`}
           </button>
         </div>
       </div>

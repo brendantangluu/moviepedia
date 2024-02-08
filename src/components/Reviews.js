@@ -4,7 +4,6 @@ function Reviews({ reviewData }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const lineClamp = 'line-clamp-5';
-
     return (
       <div>
         <div className='p-2'>
