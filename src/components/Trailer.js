@@ -1,10 +1,16 @@
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+
 function Trailer({ trailers }) {
+
+    const matches = useMediaQuery('(min-width:720px)');
+
     return (
         <div>
             {trailers && trailers.length > 0 && (
                 <iframe
                     width="100%"
-                    height="315"
+                    height={`${matches ? '500' : '315'}`}
                     src={`https://youtube.com/embed/${trailers[0].key}`}
                     title="YouTube video player"
                     frameBorder="0"

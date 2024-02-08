@@ -9,7 +9,7 @@ import { Tab } from "@headlessui/react";
 function PageHome() {
   const [activeCategory, setActiveCategory] = useState("Popular");
   const [movies, setMovies] = useState([]);
-  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500 border-b-2 border-blue-500");
+  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500");
   const [showTrailer, setShowTrailer] = useState([]);
   const [banner, setBanner] = useState([]);
 
@@ -55,32 +55,33 @@ function PageHome() {
   
   return (
     <main id="home">
+        <CarouselDefault moviesData={movies} />
+      <div>
+        <Tab.Group>
+          <Tab.List className="flex text-xs justify-evenly mx-2 my-4 sm:mx-4 sm:text-base md:text-2xl md:my-8 lg:justify-evenly lg:my-12 lg:text-3xl">
 
-      <CarouselDefault moviesData={movies} /> 
-      <Tab.Group>
-        <Tab.List className="flex text-sm justify-between mx-2 my-4">
+            <Tab onClick={() => { setActiveCategory("Popular"); }} className={`${activeCategory === "Popular" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+              Popular
+            </Tab>
 
-          <Tab onClick={() => { setActiveCategory("Popular"); }} className={`${activeCategory === "Popular" ? activeCategoryHighlight  : ""} cursor-pointer`}>
-            Popular
-          </Tab>
+            <Tab onClick={() => { setActiveCategory("Top Rated"); }} className={`${activeCategory === "Top Rated" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+              Top Rated
+            </Tab>
 
-          <Tab onClick={() => { setActiveCategory("Top Rated"); }} className={`${activeCategory === "Top Rated" ? activeCategoryHighlight  : ""} cursor-pointer`}>
-            Top Rated
-          </Tab>
+            <Tab onClick={() => { setActiveCategory("Upcoming"); }} className={`${activeCategory === "Upcoming" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+              Upcoming
+            </Tab>
 
-          <Tab onClick={() => { setActiveCategory("Upcoming"); }} className={`${activeCategory === "Upcoming" ? activeCategoryHighlight  : ""} cursor-pointer`}>
-            Upcoming
-          </Tab>
-
-          <Tab onClick={() => { setActiveCategory("Now Playing"); }} className={`${activeCategory === "Now Playing" ? activeCategoryHighlight  : ""} cursor-pointer`}>
-            Now Playing
-          </Tab>
-          
-        </Tab.List>
-      </Tab.Group> 
-      <MoviesContainer moviesData={movies} />
-      <div className="m-4 border ">
-        <Trailer trailers = {showTrailer} />
+            <Tab onClick={() => { setActiveCategory("Now Playing"); }} className={`${activeCategory === "Now Playing" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+              Now Playing
+            </Tab>
+            
+          </Tab.List>
+        </Tab.Group> 
+        <MoviesContainer moviesData={movies} />
+        <div className="my-4 md:my-16 border">
+          <Trailer trailers = {showTrailer} />
+        </div>
       </div>
 
     </main>
