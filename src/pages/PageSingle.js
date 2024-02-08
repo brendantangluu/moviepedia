@@ -199,5 +199,20 @@ function PageSingle(){
     
 }
 
+// changes made:
+// cast card
+// review
+// searchbar
+// trailer
+// pagesearch
+// pagesingle
+// approuter
+// api
+
+// pagesadded:
+// headertest
+// ogpagesingle
+
+
 
 export default PageSingle
