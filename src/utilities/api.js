@@ -174,7 +174,6 @@ function getReviews(movieId){
 }
 
 
-// const search = 'pizza';
 function discoverMovies(search){
   
   const options = {

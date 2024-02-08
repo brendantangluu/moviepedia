@@ -8,13 +8,14 @@ function CastCard({ castData }) {
   console.log(CastProfileImagePath)
 
   return (
-    <div>
-      <div className = "border rounded-lg">
-        <img className = "min-w-[175px] rounded-lg" src={CastProfileImagePath} alt="" />
-          <p className="text-sm text-center pt-2 pb-1 font-bold break-words">{castData.name}</p>
-          <p className="text-xs text-center pb-2 break-words">{castData.character}</p>
-      </div>
+    <div className="min-w-[172px] overflow-auto shadow border border-gray-200 rounded-lg bg-gray-900 border-gray-700 flex flex-col items-center justify-center"> {/* Updated class */}
+    <img className="object-cover rounded-lg" src={CastProfileImagePath} alt="" />
+    <div className="text-center">
+      <p className="text-sm pt-2 pb-1 font-bold break-words">{castData.name}</p>
+      <p className="text-xs pb-2 break-words">{castData.character}</p>
     </div>
+  </div>
+  
   ); 
 }
 

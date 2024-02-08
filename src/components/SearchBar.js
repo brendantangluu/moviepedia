@@ -1,21 +1,21 @@
-import { useEffect, useId, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-
-function SearchBar({ onSearch, setInput }) {
-  const id = useId();
+function SearchBar({ onSearch, className }) {
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setInput(inputValue);
-    onSearch();
+    onSearch(inputValue);  // Call onSearch with the inputValue
+    navigate('/search', { state: { input: inputValue } });
   };
 
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === 'Enter') {
-        setInput(inputValue);
-        onSearch();
+        onSearch(inputValue);  // Call onSearch with the inputValue
+        navigate('/search', { state: { input: inputValue } });
       }
     };
 
@@ -24,17 +24,19 @@ function SearchBar({ onSearch, setInput }) {
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
     };
-  }, [inputValue, onSearch, setInput]);
+  }, [inputValue, onSearch, navigate]);
 
 
   return (
-    <div>
-      <form action = {SearchBar} onSubmit={handleSubmit}>
-        <label htmlFor={id}>Please specify:</label>
-        <input id={id} value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-        <input type="submit" value="Search" />
+      <form className={`${className} lg:block`} onSubmit={handleSubmit}>
+        <input
+          className='w-full border rounded border-solid border-neutral-300 bg-slate-300 px-3 text-black mt-[20px]'
+          value={inputValue}
+          placeholder='search'
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <input type="submit" value="" />
       </form>
-    </div>
   );
 }
 

@@ -9,13 +9,15 @@ import { GlobalProvider } from "../context/GlobalContext";
 import Favourites from "../pages/PageFavourites";
 import PageTest from "../pages/PageTest";
 import PageSearch from "../pages/PageSearch";
+import Headertest from "../components/Headertest";
+
 
 
 function AppRouter(){
     return(
     <BrowserRouter>
         <GlobalProvider>
-            <Header/>
+            <Headertest />
             <Routes>
                 <Route path="/" element = {<PageHome/>} />
                 <Route path="/single/:id/about" element = {<PageSingle/>}/>
@@ -24,6 +26,7 @@ function AppRouter(){
                 <Route path="/watchlist" element={<PageWatchList />} />
                 <Route path="/test" element={<PageTest />} />
                 <Route path="/search" element={<PageSearch />} />
+                <Route path='/headertest' element={<Headertest />} />
             </Routes>
             <Footer/>
         </GlobalProvider>
