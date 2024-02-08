@@ -9,7 +9,7 @@ import { Tab } from "@headlessui/react";
 function PageHome() {
   const [activeCategory, setActiveCategory] = useState("Popular");
   const [movies, setMovies] = useState([]);
-  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-500 font-bold");
+  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-logo font-bold");
   const [showTrailer, setShowTrailer] = useState([]);
   const [banner, setBanner] = useState([]);
 
@@ -58,28 +58,28 @@ function PageHome() {
         <CarouselDefault moviesData={movies} />
       <div>
         <Tab.Group>
-          <Tab.List className="flex text-xs font-bold justify-between mx-2 my-4 sm:mx-4 sm:text-base md:text-2xl md:my-8 lg:justify-evenly lg:my-12 lg:text-3xl">
+          <Tab.List className="flex text-xs font-bold justify-evenly mx-2 my-4 sm:mx-4 sm:text-base md:text-2xl md:my-8 lg:justify-evenly lg:my-12 lg:text-3xl">
 
-            <Tab onClick={() => { setActiveCategory("Popular"); }} className={`${activeCategory === "Popular" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+            <Tab onClick={() => { setActiveCategory("Popular"); }} className={`${activeCategory === "Popular" ? activeCategoryHighlight  : ""} cursor-pointer transition ease-in-out hover:text-logo hover:-translate-y-1`}>
               Popular
             </Tab>
 
-            <Tab onClick={() => { setActiveCategory("Top Rated"); }} className={`${activeCategory === "Top Rated" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+            <Tab onClick={() => { setActiveCategory("Top Rated"); }} className={`${activeCategory === "Top Rated" ? activeCategoryHighlight  : ""} cursor-pointer transition ease-in-out hover:text-logo hover:-translate-y-1`}>
               Top Rated
             </Tab>
 
-            <Tab onClick={() => { setActiveCategory("Upcoming"); }} className={`${activeCategory === "Upcoming" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+            <Tab onClick={() => { setActiveCategory("Upcoming"); }} className={`${activeCategory === "Upcoming" ? activeCategoryHighlight  : ""} cursor-pointer transition ease-in-out hover:text-logo hover:-translate-y-1`}>
               Upcoming
             </Tab>
 
-            <Tab onClick={() => { setActiveCategory("Now Playing"); }} className={`${activeCategory === "Now Playing" ? activeCategoryHighlight  : ""} cursor-pointer`}>
+            <Tab onClick={() => { setActiveCategory("Now Playing"); }} className={`${activeCategory === "Now Playing" ? activeCategoryHighlight  : ""} cursor-pointer transition ease-in-out hover:text-logo hover:-translate-y-1`}>
               Now Playing
             </Tab>
             
           </Tab.List>
         </Tab.Group> 
         <MoviesContainer moviesData={movies} />
-        <h2 className="text-sm font-bold mt-2 mx-2 sm:mx-4 sm:text-base md:text-2xl lg:text-3xl">Trailer</h2>
+        <h2 className="text-sm font-bold mt-4 mx-2 border border-logo border-l-8 border-y-0 border-r-0 px-4 sm:mx-4 sm:text-base md:text-2xl md:mt-12 lg:text-3xl">Watch Trailer</h2>
         <div className="mx-2 my-4 sm:mx-4 md:my-8 border">
           <Trailer trailers = {showTrailer} />
         </div>

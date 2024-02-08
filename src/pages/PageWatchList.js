@@ -10,7 +10,7 @@ function PageWatchList() {
       <h2 className="text-4xl font-bold my-4">Watch List</h2>
       <div className="flex flex-wrap justify-center gap-12">
         {watchlist.map((watchlist, index) => (
-          <MovieCard key={index} movieData={watchlist} className="w-48 sm:w-1/2 md:w-1/3 lg:w-1/4" />
+          <MovieCard key={index} movieData={watchlist} />
         ))}
       </div>
     </div>

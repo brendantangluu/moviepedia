@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import WatchButton from './WatchListButton';
+import MoreInfoButton from './MoreInfoButton';
 
 
 const defaultMovieData = {
@@ -74,33 +75,34 @@ function MovieCard({ movieData = defaultMovieData }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <img className="object-cover mb-2 rounded-lg md:max-w-[216px]" src={imagePath} alt="" />
+        <img className="object-cover mb-2 rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={imagePath} alt="" />
         {isTapped && (
           <div className="overlay absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
             <WatchButton movieData = {movieData}/>
-            <Link to={`/single/${movieData.id}/about`}>
-              <button className="more-info-btn bg-logo text-white px-2 py-2 rounded text-sm mb-6">
-                More Info
-              </button>
-            </Link>
+            <MoreInfoButton movieData = {movieData}/>
           </div>
           
         )}
       </div>
       {/* handle movie information + favourite button */}
       <div className="w-[136px] flex flex-col items-center relative md:w-auto">
-        <div className="flex align-middle items-center mb-2.5 md:w-[216px] md:justify-evenly lg:mt-2 lg:mb-4">
-            <svg className = "mb-0.5" xmlns="http://www.w3.org/2000/svg" width={`${matches ? "40" : "24" }`} height={`${matches ? "40" : "22" }`} viewBox="0 0 24 24" fill="yellow">
-              <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
-            </svg>
-            <p className={`border ${borderClass} rounded-full p-1 min-w-[34px] text-center ml-1 text-xs md:text-xl md:p-2`}>
-              {ratingAverage}
-            </p>
-            <FavoriteButton movieData = {movieData}/>
+        <div className="flex items-center mb-2.5 md:w-[216px] md:justify-between lg:mt-2 lg:mb-4 4xl:w-[295px] 4xl:justify-stretch">
+          <div className="flex items-center">
+              <svg className="mb-0.5" xmlns="http://www.w3.org/2000/svg" width={`${matches ? "40" : "24"}`} height={`${matches ? "40" : "22"}`} viewBox="0 0 24 24" fill="yellow">
+                  <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
+              </svg>
+              <p className={`border ${borderClass} rounded-full p-1 min-w-[34px] text-center ml-1 text-xs md:text-2xl md:p-2 md:ml-2 md:mt-1`}>
+                  {ratingAverage}
+              </p>
+          </div>
+          <div className="ml-auto">
+              <FavoriteButton movieData={movieData} />
+          </div>
         </div>
+
         <div className="title-and-release text-center whitespace-normal md:w-auto">
-          <h3 className="text-sm md:text-xl">{movieData.release_date}</h3>
-          <h4 className="text-base sm:text-lg font-semibold my-2 leading-tight md:text-2xl">{movieData.title}</h4>
+          <h3 className="text-sm md:text-xl 2xl:text-2xl">{movieData.release_date}</h3>
+          <h4 className="text-base sm:text-lg font-semibold my-2 leading-tight md:text-2xl 2xl:text-3xl">{movieData.title}</h4>
         </div>
       </div>
     </div>

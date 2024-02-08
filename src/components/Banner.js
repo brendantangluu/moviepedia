@@ -1,5 +1,6 @@
 import { IMAGE_URL_BASE } from "../utilities/api";
 import { Link } from 'react-router-dom';
+import MoreInfoButton from "./MoreInfoButton";
 
 function Banner({movieData}) {
     console.log(movieData)
@@ -21,12 +22,8 @@ function Banner({movieData}) {
             <img className="h-full object-cover w-full opacity-40 lg:object-top" src={bannerPath} alt={movieData.name} />
             <div className="absolute bottom-10 left-4 md:bottom-24 md:left-8">
                 <h2 className="text-xl sm:text-3xl md:text-5xl xl:text-7xl uppercase font-black">{movieData.title}</h2>
-                <p className="text-sm sm:text-xl md:text-3xl md:mt-4 xl:text-5xl">{releaseDate}</p>
-                <Link to={`/single/${movieData.id}/about`}>
-                    <button className="more-info-btn bg-logo text-white px-1 py-1 rounded text-xs mt-2 hover:animate-pulse sm:px-4 sm:py-2 sm:text-base md:mt-4 xl:mt-8 xl:px-6 xl:py-4 xl:text-2xl">
-                        More Info
-                    </button>
-                </Link>
+                <p className="text-sm sm:text-xl md:text-3xl md:mt-2 xl:text-5xl">{releaseDate}</p>
+                <MoreInfoButton movieData={movieData}/>
             </div>
         </div>    
     )

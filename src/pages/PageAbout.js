@@ -2,7 +2,7 @@ import tmdbLogo from '../tmdb-logo.svg';
 function PageAbout(){
    
     return(
-        <div className="text-text">
+        <div className="text-text h-dvh">
             <h1 className="text-3xl m-4">About</h1>
             <p className="px-4 text-base">
                 Moviepedia is your ultimate destination for all things cinema. Our company, aptly named Moviepedia, is a dynamic and innovative online platform dedicated to bringing you the latest and greatest in the world of film. With a user-friendly interface and a vast database of popular movies, we are your go-to source for everything related to the silver screen. 
