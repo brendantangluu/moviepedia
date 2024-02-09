@@ -30,7 +30,7 @@ function SearchBar({ onSearch, className }) {
   return (
       <form className={`${className} lg:block`} onSubmit={handleSubmit}>
         <input
-          className='w-full border rounded border-solid border-neutral-300 bg-slate-300 px-3 text-black mt-[20px]'
+          className='w-full border rounded border-solid border-neutral-300 bg-slate-300 px-3 text-black mt-[15px]'
           value={inputValue}
           placeholder='search'
           onChange={(e) => setInputValue(e.target.value)}
