@@ -6,7 +6,7 @@ function Favourites() {
   const { favorites } = useContext(GlobalContext);
 
   return (
-  <div className="text-center h-dvh">
+  <div className="text-center">
       <h2 className="text-4xl font-bold my-4">Favourites</h2>
       
       {favorites.length > 0 && (
