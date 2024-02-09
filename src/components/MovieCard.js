@@ -38,7 +38,6 @@ function MovieCard({ movieData }) {
       }
 
   const matches = useMediaQuery('(min-width:720px)');
-  
 
   return (
     <div className="flex flex-col items-center relative">
@@ -56,7 +55,7 @@ function MovieCard({ movieData }) {
             <WatchButton movieData = {movieData}/>
             <p className='p-2 text-sm'>{matches ? desktopTruncatedOverview : mobileTruncatedOverview}</p>   
             <Link to={`/single/${movieData.id}/about`}>
-              <button className="more-info-btn bg-logo text-white px-1 py-1 rounded text-xs mb-4 hover:animate-pulse uppercase font-bold sm:text-sm lg:p-2 lg:text-base xl:mt-8">
+              <button className="more-info-btn bg-logo text-white hover:text-logo hover:bg-white duration-300 px-1 py-1 rounded text-xs mb-4 hover:animate-pulse uppercase font-bold sm:text-sm lg:p-2 lg:text-base xl:mt-8">
                   More Info
               </button>
             </Link>
