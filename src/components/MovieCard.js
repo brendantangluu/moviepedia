@@ -1,39 +1,13 @@
-import { useContext, useState, useEffect } from 'react';
-import { GlobalContext } from '../context/GlobalContext';
+import { useState, useEffect } from 'react';
 import { IMAGE_URL_BASE } from "../utilities/api";
 import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import WatchButton from './WatchListButton';
 
-
-const defaultMovieData = {
-  "adult": false,
-  "backdrop_path": "/f1AQhx6ZfGhPZFTVKgxG91PhEYc.jpg",
-  "genre_ids": [36, 10752, 18],
-  "id": 753342,
-  "original_language": "en",
-  "original_title": "Napoleon",
-  "overview": "An epic that details the checkered rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power through the prism of his addictive, volatile relationship with his wife, Josephine.",
-  "popularity": 1811.36,
-  "poster_path": "/jE5o7y9K6pZtWNNMEw3IdpHuncR.jpg",
-  "release_date": "2023-11-22",
-  "title": "Napoleon",
-  "video": false,
-  "vote_average": 6.529,
-  "vote_count": 1268,
-};
-
-function MovieCard({ movieData = defaultMovieData }) {
+function MovieCard({ movieData }) {
   const [isTapped, setIsTapped] = useState(false);
   const [isHoverEnabled, setIsHoverEnabled] = useState(false);
-  const { favorites, addToFavorites, removeFromFavorites } = useContext(GlobalContext);
-  const isFavorite = favorites.some((fav) => fav.id === movieData.id);
-
-  // const handleToggleFavorite = () => {
-  //   isFavorite ? removeFromFavorites(movieData) : addToFavorites(movieData);
-  // };
-
   const imagePath = `${IMAGE_URL_BASE}/w780${movieData.poster_path}`;
   const mobileTruncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 35)}...` : movieData.overview;
   const desktopTruncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 85)}...` : movieData.overview;
@@ -75,9 +49,9 @@ function MovieCard({ movieData = defaultMovieData }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <img className="object-cover mb-2 rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={imagePath} alt="" />
+        <img className="object-cover rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={imagePath} alt="" />
         {isTapped && (  
-          <div className="absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
+          <div className="px-2 absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
             <WatchButton movieData = {movieData}/>
             <p className='p-2 text-sm'>{matches ? desktopTruncatedOverview : mobileTruncatedOverview}</p>   
             <Link to={`/single/${movieData.id}/about`}>

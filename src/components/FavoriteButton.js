@@ -1,3 +1,5 @@
+// Watch list and Favourites code referenced from Randy Gulak
+
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 

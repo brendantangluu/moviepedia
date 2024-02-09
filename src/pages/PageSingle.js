@@ -119,7 +119,7 @@ function PageSingle(){
                         </div>
                     
                         {/* Desktop movie description */}
-                        <div className="hidden md:block md:col-span-8 2xl:mt-4">
+                        <div className="hidden lg:block md:col-span-8 mb-10 2xl:mt-4">
                             <h3 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">About</h3>
                             <p className="lg:text-2xl">{loadedMovieData.overview}</p>
                         </div>
@@ -128,7 +128,7 @@ function PageSingle(){
                     </div>
 
                         {/* Mobile Movie Description */}
-                        <div className="text-sm md:hidden">
+                        <div className="text-sm mb-10 lg:hidden">
                             <h3 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">About</h3>
                             <p>{loadedMovieData.overview}</p>
                         </div>

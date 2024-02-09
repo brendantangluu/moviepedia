@@ -1,3 +1,5 @@
+// Watch list and Favourites code referenced from Randy Gulak
+
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
@@ -9,7 +11,9 @@ function WatchButton({ movieData }) {
       addToWatchlist,
       removeFromWatchlist } = useContext(GlobalContext);
 
+    // determines if the movie is in the watch list
     const isWatched = watchlist.find((w) => w.id === movieData.id);
+
 
     function handleWatched(event) {
         event.stopPropagation();
@@ -19,10 +23,8 @@ function WatchButton({ movieData }) {
         } else {
             addToWatchlist(movieData);
         }
-    } 
-
-    console.log(watchlist);
-    
+    }
+        
     return (
         <button
             onClick={handleWatched}

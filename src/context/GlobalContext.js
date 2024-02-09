@@ -1,20 +1,16 @@
+// GlobalContext code referenced from Randy Gulak
+
 import {createContext, useEffect, useState} from "react";
-
-
 
 export const GlobalContext = createContext();
 
 export function GlobalProvider({children}){
     function loadFromlocalStorage(){ 
-        
-        // const localData = localStorage.getItem(list);
         const localData = localStorage.getItem("favorites");
         return localData ? JSON.parse(localData) : [];
     }
     
-    function loadFromlocalStorageWatchlist(){ 
-        
-        // const localData = localStorage.getItem(list);
+    function loadFromlocalStorageWatchlist(){   
         const localData = localStorage.getItem("watchlist");
         return localData ? JSON.parse(localData) : [];
     }
