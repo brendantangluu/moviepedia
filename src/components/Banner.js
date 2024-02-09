@@ -1,9 +1,7 @@
 import { IMAGE_URL_BASE } from "../utilities/api";
-import { Link } from 'react-router-dom';
 import MoreInfoButton from "./MoreInfoButton";
 
 function Banner({movieData}) {
-    console.log(movieData)
     const bannerPath = `${IMAGE_URL_BASE}/w1280${movieData.backdrop_path}`;
     const releaseDate = movieData.release_date.slice(0,4);
     const ratingAverage = movieData.vote_average.toFixed(1);

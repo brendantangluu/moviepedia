@@ -8,7 +8,6 @@ import PageSingle from "../pages/PageSingle";
 import { GlobalProvider } from "../context/GlobalContext";
 import Favourites from "../pages/PageFavourites";
 import PageSearch from "../pages/PageSearch";
-import Headertest from "../components/Header";
 
 
 
@@ -18,14 +17,14 @@ function AppRouter(){
         {/* We wrap everything with GlobalProvider so other pages can 
         reference and use favourite and watching functionality */}
         <GlobalProvider>
-            <Headertest />
+            <Header />
             <Routes>
                 <Route path="/" element = {<PageHome/>} />
                 <Route path="/single/:id/about" element = {<PageSingle/>}/>
                 <Route path="/about" element = {<PageAbout/>}/>
                 <Route path="/favourites" element={<Favourites />} />
                 <Route path="/watchlist" element={<PageWatchList />} />
-                <Route path="/search/:key" element={<PageSearch />} />
+                <Route path="/search" element={<PageSearch />} />
                 <Route path='/header' element={<Header />} />
             </Routes>
             <Footer/>

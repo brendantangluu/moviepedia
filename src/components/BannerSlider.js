@@ -1,6 +1,8 @@
-import { Carousel, IconButton } from "@material-tailwind/react";
+// CarouselDefault (Banner/BannerSlider.js) provided from Material UI - Tailwind
+// https://www.material-tailwind.com/docs/react/carousel
+
+import { Carousel } from "@material-tailwind/react";
 import Banner from "./Banner";
-import { Link } from "react-router-dom";
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {

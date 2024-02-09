@@ -1,3 +1,5 @@
+// GlobalContext code referenced from Randy Gulak
+
 import {createContext, useEffect, useState} from "react";
 
 export const GlobalContext = createContext();

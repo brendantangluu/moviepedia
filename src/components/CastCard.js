@@ -6,8 +6,6 @@ function CastCard({ castData }) {
   
   const CastProfileImagePath = `${IMAGE_URL_BASE}/h632${castData.profile_path}`;
   
-  console.log(castData)
-
   return (
   <div className="min-w-[172px] overflow-auto shadow border border-gray-200 rounded-lg bg-gray-900 border-gray-700 flex flex-col items-center justify-center"> {/* Updated class */}
     <img className="object-cover rounded-lg" src={!castData.profile_path ? placeholder : CastProfileImagePath} alt="" />

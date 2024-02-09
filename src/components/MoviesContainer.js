@@ -1,4 +1,3 @@
-import FavoriteButton from "./FavoriteButton";
 import MovieCard from "./MovieCard";
 import { useState } from "react";
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -6,6 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 function MoviesContainer({ title, moviesData }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Allows scrolls for mobile
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % moviesData.length);
   };
@@ -16,7 +16,11 @@ function MoviesContainer({ title, moviesData }) {
 
   const matches = useMediaQuery('(min-width:1600px)');
 
+  // if the matches constant is true (window size hits 1600px or above)
+  // slice the character limit to 18
+  // if not, 15
   const sliceNumber = matches ? 18 : 15;
+
   return (
     <section>
       <h2 className="text-xl font-bold my-4 pl-2">{title}</h2>

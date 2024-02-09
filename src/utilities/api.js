@@ -3,20 +3,7 @@ const API_ENDPOINT = "https://api.themoviedb.org/3";
 const IMAGE_URL_BASE = "https://image.tmdb.org/t/p";
 const SEARCH_BASE =  "&include_adult=false&language=en-US&page=1";
 
-
-// =================================
-//            api calls
-//===================================
-//  1. main categories
-//  2. trailers
-//  3. movie details(for description)
-//  4. movie credits
-//  5.reviews
-//  6. search api call
-
-
-
-//  1. main categories  (movies, popular, top rated, upcoming, now playing)
+// fetch Popular Movies
 function getPopularMovies(){
     const options = {
         method: 'GET',
@@ -38,6 +25,7 @@ function getPopularMovies(){
         });
 }
 
+// fetch Top Rated Movies
 function getTopRatedMovies(){
   const options = {
       method: 'GET',
@@ -59,6 +47,7 @@ function getTopRatedMovies(){
       });
 }
 
+// fetch Upcoming Movies
 function getUpcomingMovies(){
   const options = {
       method: 'GET',
@@ -80,6 +69,7 @@ function getUpcomingMovies(){
       });
 }
 
+// fetch Now Playing Movies
 function getNowPlayingMovies(){
   const options = {
       method: 'GET',
@@ -101,7 +91,7 @@ function getNowPlayingMovies(){
       });
 }
 
-//  2. trailers
+// fetch Trailers
 function fetchTrailers(movieId){
   const options = {
     method: 'GET',
@@ -124,7 +114,7 @@ function fetchTrailers(movieId){
     });
 }
 
-//  3. movie details(for description)
+// fetch Single Movie Details
 function getMovieDetails(movieId) {
   const options = {
     method: 'GET',
@@ -146,7 +136,7 @@ function getMovieDetails(movieId) {
     });
 }
 
-//  4. movie credits
+// fetch Credits
 function getCreditDetails(movieId) {
   const options = {
     method: 'GET',
@@ -168,7 +158,7 @@ function getCreditDetails(movieId) {
     });
 }
 
-//  5.reviews
+// fetch Reviews
 function getReviews(movieId){
   const options = {
     method: 'GET',

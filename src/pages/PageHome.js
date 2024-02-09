@@ -9,9 +9,13 @@ import { Tab } from "@headlessui/react";
 function PageHome() {
   const [activeCategory, setActiveCategory] = useState("Popular");
   const [movies, setMovies] = useState([]);
-  const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-logo font-bold");
+  const activeCategoryHighlight = "text-logo font-bold";
   const [showTrailer, setShowTrailer] = useState([]);
-  const [banner, setBanner] = useState([]);
+
+
+  // fetch movie categories and store them in the movies useState
+  // Using a switch case to handle the category switches
+  // With help from ChatGPT
 
   useEffect(() => {
     const fetchMoviesByCategory = async (category) => {
@@ -59,7 +63,10 @@ function PageHome() {
       <div>
         <Tab.Group>
           <Tab.List className="flex text-xs font-bold justify-evenly mx-2 my-4 sm:mx-4 sm:text-base md:text-2xl md:my-8 lg:justify-evenly lg:my-12 lg:text-3xl">
-
+            
+            {/* On click changes the active category to what the user selects, corresponding to the switch case values */}
+            {/* If the category is active, apply these styles (activeCategoryHighlight) */}
+            
             <Tab onClick={() => { setActiveCategory("Popular"); }} className={`${activeCategory === "Popular" ? activeCategoryHighlight  : ""} cursor-pointer transition ease-in-out hover:text-logo hover:-translate-y-1`}>
               Popular
             </Tab>

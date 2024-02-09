@@ -1,12 +1,12 @@
+// Watch list and Favourites code referenced from Randy Gulak
+
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
-function FavoriteButton({ movieData }) {
-
-    // we destructure like this because of the structure of the array
+function FavoriteButton({ movieData, pageStyle }) {
+     // we destructure like this because of the structure of the array
     // so we dont use watchlist, addToWatchlst and removeFromWatchlist
     // but they are there to make sure we get the proper data and functions
-    
     const { favorites, watchlist, addToFavorites, removeFromFavorites , addToWatchlist, removeFromWatchlist } = useContext(GlobalContext);
 
     const isFavorited = favorites.find((fav) => fav.id === movieData.id);
@@ -21,10 +21,31 @@ function FavoriteButton({ movieData }) {
         }
     }
 
+    // Default button style
+    let buttonStyle = "lg:hover:-translate-y-1 duration-300 transition ease-in-out delay-50 text-2xl md:text-4xl ";
+
+    // Adjust buttonStyle based on pageStyle
+    if (pageStyle === "page1") {
+        buttonStyle += "lg:hover:text-red-500 ml-14 4xl:ml-0";
+    } else if (pageStyle === "single") {
+        buttonStyle += " lg:hover:text-red-500 ml-4";
+    }
+
+    // Default text style
+    let textStyle = "text-white lg:hover:text-red-500";
+
+    // Adjust textStyle based on pageStyle
+    if (isFavorited && pageStyle === "page1") {
+        textStyle = "text-red-500 lg:hover:text-white";
+    } else if(isFavorited && pageStyle === "single"){
+        textStyle = "text-red-500 lg:hover:text-white";
+
+    }
+
     return (
         <button
             onClick={handleFavorite}
-            className={`hover:-translate-y-1 hover:text-red-500 duration-300 ${isFavorited ? "transition ease-in-out delay-50 text-red-500 hover:text-white" : ""} text-2xl ml-14 md:text-4xl 4xl:ml-0` }
+            className={`${buttonStyle} ${textStyle}`}
         >
             &#9829;
         </button>

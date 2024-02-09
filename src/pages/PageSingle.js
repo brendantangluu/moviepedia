@@ -14,32 +14,24 @@ function PageSingle(){
     const [loadedMovieData, setLoadedMovieData] = useState();
     const [loadedTrailer, setLoadedTrailer] = useState();
     const [activeTab, setActiveTab] = useState('about');
-
+    
     // we need to give this an empty array because  
     // the page loads without data and it will cause the site to crash
-    const [creditData, setCreditData] = useState({ cast: [] });    
-    const [reviewData, setReviewData] = useState({ results: [] });
-                                                                  
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const scrollToSection = (section) => {
-        setActiveTab(section);
-        const e = document.getElementById(section);
-        if(e){
-            e.scrollIntoView({behavior: 'smooth'});
-        }
-
-    }
+    const [creditData, setCreditData] = useState({ cast: [] }); 
+    const [reviewData, setReviewData] = useState({ results: [] }); 
+    
+    const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
+    
+    // Load Movie Details, Trailer, Cast, and Reviews Data in a useEffect
+    // .then and .catch to provide fallbacks in case of errors
 
     useEffect(() => {
         getMovieDetails(id)
             .then((data) => {
                 setLoadedMovieData(data);
-                console.log(loadedMovieData)
-              
                 fetchTrailers(id)
                     .then((data) => {
-                        const trailer = filterVideos(data.results);
-                        console.log(trailer) 
+                        const trailer = filterVideos(data.results);                        
                         setLoadedTrailer(trailer);
                     })
                     .catch((trailerError) => {
@@ -48,8 +40,7 @@ function PageSingle(){
                 
                 
                 getCreditDetails(id)
-                .then((data)=> {
-                  
+                .then((data)=> {           
                     setCreditData(data);
                 })
                 .catch((creditError)=>{
@@ -121,11 +112,11 @@ function PageSingle(){
                         <h3 className="-translate-y-2 sm:text-xl lg:text-2xl">{loadedMovieData.release_date}</h3>
 
                         <div className="flex align-middle text-center flex-wrap">
-                            <div className="w-full">
-                                {/* rating */}
+                            <div className="w-full flex">
                                 <p className={`border ${borderClass} rounded-full p-1 w-[38px] ${colorClass} text-center mb-1 sm:text-xl sm:p-1`}>
                                     {ratingAverage}
                                 </p>
+                                <FavoriteButton movieData = {loadedMovieData} pageStyle={"single"}/>
                             </div>
 
                             {/* movie geners */}
@@ -137,9 +128,9 @@ function PageSingle(){
                             ))}
 
                         </div>
-                        
-                        {/* Movie description */}
-                        <div className="hidden md:block md:col-span-8 2xl:mt-4">
+                    
+                        {/* Desktop movie description */}
+                        <div className="hidden lg:block md:col-span-8 mb-10 2xl:mt-4">
                             <h3 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">About</h3>
                             <p className="lg:text-2xl">{loadedMovieData.overview}</p>
                         </div>
@@ -147,7 +138,8 @@ function PageSingle(){
                         </div>
                     </div>
 
-                        <div className="text-sm md:hidden">
+                        {/* Mobile Movie Description */}
+                        <div className="text-sm mb-10 lg:hidden">
                             <h3 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">About</h3>
                             <p>{loadedMovieData.overview}</p>
                         </div>
@@ -157,15 +149,10 @@ function PageSingle(){
                     <h2 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">Watch Trailer</h2>
                     <Trailer trailers={loadedTrailer}/>
                     </div>
-
-                
                 </div>
-            
-                {/* Cast */}
                 <div className="relative overflow-x-scroll whitespace-nowrap p-2">
                     <h2 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">Top Billed Cast</h2>
-                    <ol className="flex list-none m-0 p-0" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>    
-                    
+                    <ol className="flex list-none m-0 p-0">     
                         {creditData.cast.length > 0 &&
                         creditData.cast.slice(0, 10).map((castData) => (
                             <li key={castData.id} className="pr-5 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2">

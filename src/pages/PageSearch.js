@@ -16,7 +16,6 @@ function SearchPage() {
       discoverMovies(input)
         .then((data) => {
           setSearchResults(data.results);
-          console.log(data.results);
         })
         .catch((error) => {
           console.error('Error fetching search results:', error);
