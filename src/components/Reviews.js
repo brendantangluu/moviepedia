@@ -4,9 +4,10 @@ function Reviews({ reviewData }) {
 
   const [isOpen, setIsOpen] = useState(false);
   const lineClamp = 'line-clamp-5';
+
     return (
       <div>
-        <div className=''>
+        <div className='px-2'>
             {reviewData.author_details.rating > 1 && (
                 <>
                     <h3>{reviewData.author}</h3>
@@ -16,7 +17,7 @@ function Reviews({ reviewData }) {
                                     <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
                                   </svg>
                     </div>
-                    <p className={`${!isOpen ? lineClamp : lineClamp}`}>{reviewData.content}</p>
+                    <p className={`${!isOpen ? lineClamp : ''}`}>{reviewData.content}</p>
                     <button onClick = {() => setIsOpen(!isOpen)} className="mb-10 mt-2 text-logo">{isOpen ? 'Read Less...' : 'Read More...'}</button>    
                 </>
             )}

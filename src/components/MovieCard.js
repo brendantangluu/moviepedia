@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import WatchButton from './WatchListButton';
-import MoreInfoButton from './MoreInfoButton';
 
 
 const defaultMovieData = {

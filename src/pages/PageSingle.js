@@ -5,11 +5,7 @@ import CastCard from "../components/CastCard";
 import Reviews from "../components/Reviews";
 import filterVideos from "../utilities/toolbelt";
 import Trailer from "../components/Trailer";
-import useMediaQuery from '@mui/material/useMediaQuery';
-
-
-
-
+import FavoriteButton from '../components/FavoriteButton'
 
 function PageSingle(){
     
@@ -32,9 +28,6 @@ function PageSingle(){
         }
 
     }
-    const matches = useMediaQuery('(min-width:540px)');
-   
-
     useEffect(() => {
         getMovieDetails(id)
             .then((data) => {
@@ -83,9 +76,9 @@ function PageSingle(){
         return <p>Loading...</p>;
     }
 
-    const imagePath = `${IMAGE_URL_BASE}/w780${loadedMovieData.backdrop_path}`;
+    const imagePath = `${IMAGE_URL_BASE}/w1280${loadedMovieData.backdrop_path}`;
 
-    const posterImagePath = `${IMAGE_URL_BASE}/w780${loadedMovieData.poster_path}`;
+    const posterImagePath = `${IMAGE_URL_BASE}/w1280${loadedMovieData.poster_path}`;
     
 
 
@@ -117,11 +110,6 @@ function PageSingle(){
                             <div className="flex align-middle justify-between wrap flex-wrap">
                                 <div className="flex items-center justify-between mb-1">
                                     <h2 className="font-bold text-2xl pr-2 sm:text-3xl lg:text-4xl">{loadedMovieData.title}</h2>
-                                    <div className="flex items-center">
-                                        <svg className="mr-1 self-center" xmlns="http://www.w3.org/2000/svg" width={`${matches ? "30" : "18"}`} height={`${matches ? "30" : "18"}`} viewBox="0 0 24 24" fill="yellow">
-                                            <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
-                                        </svg>
-                                    </div>
                                 </div>
                             </div>
                         {/* Movie Info - Rating and Date */}
@@ -135,7 +123,7 @@ function PageSingle(){
                             </div>
                             {loadedMovieData.genres.length > 0 && 
                                 loadedMovieData.genres.slice(0,2).map((genre) => (
-                                    <div key = {genre.id} className="mr-2 mt-2 text-xs border border-white p-1 rounded-full sm:text-base lg:p-3">
+                                    <div key = {genre.id} className="mr-2 mt-2 text-xs border border-logo p-1 rounded-full sm:text-base lg:p-3">
                                         <p>{genre.name}</p>
                                     </div>
                             ))}
@@ -147,7 +135,7 @@ function PageSingle(){
                     
                         {/* Desktop movie description */}
                         <div className="hidden md:block md:col-span-8 2xl:mt-4">
-                            <h3 className="text-xl pr-2 text-slate-200 mt-2 lg:text-2xl lg:font-bold">About</h3>
+                            <h3 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">About</h3>
                             <p className="lg:text-2xl">{loadedMovieData.overview}</p>
                         </div>
 
@@ -156,13 +144,13 @@ function PageSingle(){
 
                         {/* Mobile Movie Description */}
                         <div className="text-sm md:hidden">
-                            <h3 className="font-bold text-2xl pr-2 text-slate-200">About</h3>
+                            <h3 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">About</h3>
                             <p className="sm:text-">{loadedMovieData.overview}</p>
                         </div>
 
                     {/* Movie Trailer */}
                     <div className="bg-[#202020] w-full p-4 rounded">
-                    <h2 className="text-2xl pr-2 text-slate-200 pb-1">Watch Trailer</h2>
+                    <h2 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">Watch Trailer</h2>
                     <Trailer trailers={loadedTrailer}/>
                     </div>
 
@@ -183,7 +171,7 @@ function PageSingle(){
                     </ol>
                 </div>
                 <div id='reviews' className="bg-[#202020] p-4 mt-10">
-                <h2 className="text-2xl">Reviews</h2>
+                <h2 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">Reviews</h2>
                     {reviewData.results.length > 0 ? (
                     reviewData.results.map((reviewData) => (
                         <Reviews key={reviewData.id} reviewData={reviewData} />
