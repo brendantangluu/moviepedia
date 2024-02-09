@@ -8,16 +8,10 @@ function PageWatchList() {
   return (
     <div className="text-center">
       <h2 className="text-4xl font-bold my-4">Watch List</h2>
-      <div className="flex flex-wrap justify-center gap-12">
-        {watchlist.map((watchlist, index) => (
-          <MovieCard key={index} movieData={watchlist} />
-        ))}
-      </div>
-      
       {watchlist.length > 0 && (
         <div className="flex flex-wrap justify-center gap-12">
-          {watchlist.map((favorite, index) => (
-            <MovieCard key={index} movieData={favorite} />
+          {watchlist.map((watchlist, index) => (
+            <MovieCard key={index} movieData={watchlist} />
           ))}
         </div>
       )}

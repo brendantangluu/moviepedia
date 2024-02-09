@@ -101,7 +101,7 @@ function MovieCard({ movieData = defaultMovieData }) {
               </p>
           </div>
           <div className="ml-auto">
-              <FavoriteButton movieData={movieData} />
+              <FavoriteButton movieData={movieData} pageStyle={"page1"} />
           </div>
         </div>
 

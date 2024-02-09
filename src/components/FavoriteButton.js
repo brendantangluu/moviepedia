@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
-function FavoriteButton({ movieData }) {
-    const { favorites, wl, addToFavorites, removeFromFavorites , a2w, rfw } = useContext(GlobalContext);
+function FavoriteButton({ movieData, pageStyle }) {
+    const { favorites, addToFavorites, removeFromFavorites } = useContext(GlobalContext);
 
     const isFavorited = favorites.find((fav) => fav.id === movieData.id);
 
@@ -16,10 +16,31 @@ function FavoriteButton({ movieData }) {
         }
     }
 
+    // Default button style
+    let buttonStyle = "lg:hover:-translate-y-1 duration-300 transition ease-in-out delay-50 text-2xl md:text-4xl ";
+
+    // Adjust buttonStyle based on pageStyle
+    if (pageStyle === "page1") {
+        buttonStyle += "lg:hover:text-red-500 ml-14 4xl:ml-0";
+    } else if (pageStyle === "page2") {
+        buttonStyle += " lg:hover:text-white ml-4";
+    }
+
+    // Default text style
+    let textStyle = "text-white lg:hover:text-red-500";
+
+    // Adjust textStyle based on pageStyle
+    if (isFavorited && pageStyle === "page1") {
+        textStyle = "text-red-500 lg:hover:text-white";
+    } else if(isFavorited && pageStyle === "page2"){
+        textStyle = "text-red-500 lg:hover:text-white";
+
+    }
+
     return (
         <button
             onClick={handleFavorite}
-            className={`lg:hover:-translate-y-1 lg:hover:text-red-500 lg:duration-300 ${isFavorited ? "text-red-500 lg:transition lg:ease-in-out lg:delay-50 lg:hover:text-white" : ""} text-2xl ml-14 md:text-4xl 4xl:ml-0` }
+            className={`${buttonStyle} ${textStyle}`}
         >
             &#9829;
         </button>

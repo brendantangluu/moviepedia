@@ -116,10 +116,11 @@ function PageSingle(){
                         <h3 className="-translate-y-2 sm:text-xl lg:text-2xl">{loadedMovieData.release_date}</h3>
 
                         <div className="flex align-middle text-center flex-wrap">
-                            <div className="w-full">
+                            <div className="w-full flex">
                                 <p className={`border ${borderClass} rounded-full p-1 w-[38px] ${colorClass} text-center mb-1 sm:text-xl sm:p-1`}>
                                     {ratingAverage}
                                 </p>
+                                <FavoriteButton movieData = {loadedMovieData} pageStyle={"page2"}/>
                             </div>
                             {loadedMovieData.genres.length > 0 && 
                                 loadedMovieData.genres.slice(0,2).map((genre) => (
