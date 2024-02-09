@@ -57,7 +57,7 @@ function getUpcomingMovies(){
       }
     };
     
-    return fetch(`${API_ENDPOINT}/movie/upcoming`, options)
+    return fetch(`${API_ENDPOINT}/movie/upcoming?region=us`, options)
       .then(response => {
           if (!response.ok) {
               throw new Error("Network response was not OK");
