@@ -5,9 +5,9 @@ import MovieCard from '../components/MovieCard';
 
 function PageWatchList() {
   const { watchlist } = useContext(GlobalContext);
- 
+
   return (
-    <div className="text-center">
+    <div className="text-center min-h-screen px-4">
       <h2 className="text-4xl font-bold my-4">Watch List</h2>
       <div className="flex flex-wrap justify-center gap-12">
         {watchlist.map((watchlist, index) => (

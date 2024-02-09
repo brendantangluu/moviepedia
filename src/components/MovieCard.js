@@ -82,7 +82,7 @@ function MovieCard({ movieData }) {
 
         <div className="text-center whitespace-normal md:w-auto">
           <h3 className="text-sm italic md:text-xl 2xl:text-2xl">{movieData.release_date}</h3>
-          <h4 className="text-base sm:text-lg font-semibold my-2 leading-tight md:text-2xl 2xl:text-3xl">{movieData.title}</h4>
+          <h4 className="text-base font-semibold my-2 leading-tight max-w-[216px] sm:text-lg md:text-2xl 2xl:text-3xl">{movieData.title}</h4>
         </div>
       </div>
     </div>
