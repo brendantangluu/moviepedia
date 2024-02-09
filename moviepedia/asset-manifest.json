@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/moviepedia/static/css/main.6604cd54.css",
+    "main.js": "/moviepedia/static/js/main.ee447640.js",
+    "static/js/787.2313afd2.chunk.js": "/moviepedia/static/js/787.2313afd2.chunk.js",
+    "static/media/placeholder.svg": "/moviepedia/static/media/placeholder.421f8e930e439cef740d7a6656ceadb4.svg",
+    "static/media/placeholder2.svg": "/moviepedia/static/media/placeholder2.4d11bba3d3babe08d0efbcec69e8ec6f.svg",
+    "static/media/tmdb-logo.svg": "/moviepedia/static/media/tmdb-logo.bf7f470b3821af1da7fa249c87dadea3.svg",
+    "index.html": "/moviepedia/index.html",
+    "main.6604cd54.css.map": "/moviepedia/static/css/main.6604cd54.css.map",
+    "main.ee447640.js.map": "/moviepedia/static/js/main.ee447640.js.map",
+    "787.2313afd2.chunk.js.map": "/moviepedia/static/js/787.2313afd2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6604cd54.css",
+    "static/js/main.ee447640.js"
+  ]
+}

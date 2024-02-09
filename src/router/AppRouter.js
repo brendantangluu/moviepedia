@@ -13,7 +13,7 @@ import PageSearch from "../pages/PageSearch";
 
 function AppRouter(){
     return(
-    <BrowserRouter>
+    <BrowserRouter basename="moviepedia">
         {/* We wrap everything with GlobalProvider so other pages can 
         reference and use favourite and watching functionality */}
         <GlobalProvider>

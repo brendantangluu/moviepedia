@@ -1,5 +1,6 @@
 {
   "name": "movie-mania",
+  "homepage": "moviepedia",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
