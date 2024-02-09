@@ -76,9 +76,10 @@ function MovieCard({ movieData = defaultMovieData }) {
         onMouseLeave={handleMouseLeave}
       >
         <img className="object-cover mb-2 rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={imagePath} alt="" />
-        {isTapped && (
-          <div className="overlay absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
+        {isTapped && (  
+          <div className="absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
             <WatchButton movieData = {movieData}/>
+            <p>{movieData.overview}</p>
             <MoreInfoButton movieData = {movieData}/>
           </div>
           

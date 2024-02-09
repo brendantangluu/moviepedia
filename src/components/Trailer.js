@@ -1,5 +1,3 @@
-import useMediaQuery from '@mui/material/useMediaQuery';
-
 
 function Trailer({ trailers }) {
   return (
