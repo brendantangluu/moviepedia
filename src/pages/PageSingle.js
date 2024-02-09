@@ -14,32 +14,21 @@ function PageSingle(){
     const [loadedMovieData, setLoadedMovieData] = useState();
     const [loadedTrailer, setLoadedTrailer] = useState();
     const [activeTab, setActiveTab] = useState('about');
-    const [creditData, setCreditData] = useState({ cast: [] }); // Initialize with an empty array
-    const [reviewData, setReviewData] = useState({ results: [] }); // Initialize with an empty array
+    const [creditData, setCreditData] = useState({ cast: [] }); 
+    const [reviewData, setReviewData] = useState({ results: [] }); 
     
     const [activeCategoryHighlight, setActiveCategoryHighlight] = useState("text-blue-400 border-b-2 border-blue-500");
     
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const scrollToSection = (section) => {
-        setActiveTab(section);
-        const e = document.getElementById(section);
-        if(e){
-            e.scrollIntoView({behavior: 'smooth'});
-        }
+    // Load Movie Details, Trailer, Cast, and Reviews Data in a useEffect
+    // .then and .catch to provide fallbacks in case of errors
 
-    }
     useEffect(() => {
         getMovieDetails(id)
             .then((data) => {
                 setLoadedMovieData(data);
-                console.log(loadedMovieData)
-              
-                // fetchTrailers returning undefined, need to fix
                 fetchTrailers(id)
                     .then((data) => {
-                        const trailer = filterVideos(data.results);
-                        console.log(trailer) 
-                        
+                        const trailer = filterVideos(data.results);                        
                         setLoadedTrailer(trailer);
                     })
                     .catch((trailerError) => {
@@ -48,8 +37,7 @@ function PageSingle(){
                 
                 
                 getCreditDetails(id)
-                .then((data)=> {
-                  
+                .then((data)=> {           
                     setCreditData(data);
                 })
                 .catch((creditError)=>{
@@ -77,7 +65,6 @@ function PageSingle(){
     }
 
     const imagePath = `${IMAGE_URL_BASE}/w1280${loadedMovieData.backdrop_path}`;
-
     const posterImagePath = `${IMAGE_URL_BASE}/w1280${loadedMovieData.poster_path}`;
     
 
@@ -120,7 +107,7 @@ function PageSingle(){
                                 <p className={`border ${borderClass} rounded-full p-1 w-[38px] ${colorClass} text-center mb-1 sm:text-xl sm:p-1`}>
                                     {ratingAverage}
                                 </p>
-                                <FavoriteButton movieData = {loadedMovieData} pageStyle={"page2"}/>
+                                <FavoriteButton movieData = {loadedMovieData} pageStyle={"single"}/>
                             </div>
                             {loadedMovieData.genres.length > 0 && 
                                 loadedMovieData.genres.slice(0,2).map((genre) => (
@@ -130,9 +117,6 @@ function PageSingle(){
                             ))}
 
                         </div>
-
-                        {/* Map out Genre Array */}
-                    
                     
                         {/* Desktop movie description */}
                         <div className="hidden md:block md:col-span-8 2xl:mt-4">
@@ -154,15 +138,10 @@ function PageSingle(){
                     <h2 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">Watch Trailer</h2>
                     <Trailer trailers={loadedTrailer}/>
                     </div>
-
-                
                 </div>
-            
-            
                 <div className="relative overflow-x-scroll whitespace-nowrap p-2">
                     <h2 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">Top Billed Cast</h2>
-                    <ol className="flex list-none m-0 p-0" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>    
-                    
+                    <ol className="flex list-none m-0 p-0">     
                         {creditData.cast.length > 0 &&
                         creditData.cast.slice(0, 10).map((castData) => (
                             <li key={castData.id} className="pr-5 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2">
@@ -186,21 +165,5 @@ function PageSingle(){
     )
     
 }
-
-// changes made:
-// cast card
-// review
-// searchbar
-// trailer
-// pagesearch
-// pagesingle
-// approuter
-// api
-
-// pagesadded:
-// headertest
-// ogpagesingle
-
-
 
 export default PageSingle

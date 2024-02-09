@@ -3,6 +3,7 @@ const API_ENDPOINT = "https://api.themoviedb.org/3";
 const IMAGE_URL_BASE = "https://image.tmdb.org/t/p";
 const SEARCH_BASE =  "&include_adult=false&language=en-US&page=1";
 
+// fetch Popular Movies
 function getPopularMovies(){
     const options = {
         method: 'GET',
@@ -24,6 +25,7 @@ function getPopularMovies(){
         });
 }
 
+// fetch Top Rated Movies
 function getTopRatedMovies(){
   const options = {
       method: 'GET',
@@ -45,6 +47,7 @@ function getTopRatedMovies(){
       });
 }
 
+// fetch Upcoming Movies
 function getUpcomingMovies(){
   const options = {
       method: 'GET',
@@ -66,6 +69,7 @@ function getUpcomingMovies(){
       });
 }
 
+// fetch Now Playing Movies
 function getNowPlayingMovies(){
   const options = {
       method: 'GET',
@@ -87,6 +91,7 @@ function getNowPlayingMovies(){
       });
 }
 
+// fetch Trailers
 function fetchTrailers(movieId){
   const options = {
     method: 'GET',
@@ -109,6 +114,7 @@ function fetchTrailers(movieId){
     });
 }
 
+// fetch Single Movie Details
 function getMovieDetails(movieId) {
   const options = {
     method: 'GET',
@@ -130,6 +136,7 @@ function getMovieDetails(movieId) {
     });
 }
 
+// fetch Credits
 function getCreditDetails(movieId) {
   const options = {
     method: 'GET',
@@ -151,6 +158,7 @@ function getCreditDetails(movieId) {
     });
 }
 
+// fetch Reviews
 function getReviews(movieId){
   const options = {
     method: 'GET',

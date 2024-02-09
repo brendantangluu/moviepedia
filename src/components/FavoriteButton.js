@@ -22,7 +22,7 @@ function FavoriteButton({ movieData, pageStyle }) {
     // Adjust buttonStyle based on pageStyle
     if (pageStyle === "page1") {
         buttonStyle += "lg:hover:text-red-500 ml-14 4xl:ml-0";
-    } else if (pageStyle === "page2") {
+    } else if (pageStyle === "single") {
         buttonStyle += " lg:hover:text-red-500 ml-4";
     }
 
@@ -32,7 +32,7 @@ function FavoriteButton({ movieData, pageStyle }) {
     // Adjust textStyle based on pageStyle
     if (isFavorited && pageStyle === "page1") {
         textStyle = "text-red-500 lg:hover:text-white";
-    } else if(isFavorited && pageStyle === "page2"){
+    } else if(isFavorited && pageStyle === "single"){
         textStyle = "text-red-500 lg:hover:text-white";
 
     }
