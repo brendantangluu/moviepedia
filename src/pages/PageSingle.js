@@ -5,7 +5,7 @@ import CastCard from "../components/CastCard";
 import Reviews from "../components/Reviews";
 import filterVideos from "../utilities/toolbelt";
 import Trailer from "../components/Trailer";
-
+import FavoriteButton from "../components/FavoriteButton";
 
 
 
@@ -113,12 +113,12 @@ function PageSingle(){
                           <div className="flex align-middle justify-between wrap flex-wrap">
                             
                           <div className="flex items-center justify-between mb-1">
-                              <h2 className="font-bold text-2xl pr-2">{loadedMovieData.title}</h2>
-                              <div className="flex items-center">
-                                <svg className="mr-1 self-center" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow">
-                                  <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/>
-                                </svg>
+                              <h2 className="font-bold text-2xl">{loadedMovieData.title}</h2>
+                             
+                              <div className="">
+                              <FavoriteButton movieData={loadedMovieData} className="w-12 h-12"/>
                               </div>
+
                             </div>
 
 

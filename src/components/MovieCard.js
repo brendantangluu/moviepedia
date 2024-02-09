@@ -31,12 +31,12 @@ function MovieCard({ movieData = defaultMovieData }) {
   const { favorites, addToFavorites, removeFromFavorites } = useContext(GlobalContext);
   const isFavorite = favorites.some((fav) => fav.id === movieData.id);
 
-  const handleToggleFavorite = () => {
-    isFavorite ? removeFromFavorites(movieData) : addToFavorites(movieData);
-  };
+  // const handleToggleFavorite = () => {
+  //   isFavorite ? removeFromFavorites(movieData) : addToFavorites(movieData);
+  // };
 
   const imagePath = `${IMAGE_URL_BASE}/w780${movieData.poster_path}`;
-  const truncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 50)}...` : movieData.overview;
+  // const truncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 50)}...` : movieData.overview;
 
   useEffect(() => {
     const handleResize = () => {

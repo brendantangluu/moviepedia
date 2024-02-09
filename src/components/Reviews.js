@@ -6,7 +6,7 @@ function Reviews({ reviewData }) {
   const lineClamp = 'line-clamp-5';
     return (
       <div>
-        <div className=''>
+        <div className='border-b border-white mt-[50px]'>
             {reviewData.author_details.rating > 1 && (
                 <>
                     <h3>{reviewData.author}</h3>
@@ -17,7 +17,7 @@ function Reviews({ reviewData }) {
                                   </svg>
                     </div>
                     <p className={`${!isOpen ? lineClamp : lineClamp}`}>{reviewData.content}</p>
-                    <button onClick = {() => setIsOpen(!isOpen)} className="mb-10 mt-2 text-logo">{isOpen ? 'Read Less...' : 'Read More...'}</button>    
+                    <button onClick = {() => setIsOpen(!isOpen)} className="mb-10 mt-2 text-logo">{isOpen ? 'Read Less...' : 'Read More...'} </button>    
                 </>
             )}
         </div>

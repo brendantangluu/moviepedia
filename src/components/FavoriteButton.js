@@ -19,7 +19,7 @@ function FavoriteButton({ movieData }) {
     return (
         <button
             onClick={handleFavorite}
-            className={`hover:-translate-y-1 hover:text-red-500 duration-300 ${isFavorited ? "transition ease-in-out delay-50 text-red-500 hover:text-white" : ""} text-2xl ml-14 md:text-4xl 4xl:ml-0` }
+            className={`lg:hover:-translate-y-1 lg:hover:text-red-500 lg:duration-300 ${isFavorited ? "text-red-500 lg:transition lg:ease-in-out lg:delay-50 lg:hover:text-white" : ""} text-2xl ml-14 md:text-4xl 4xl:ml-0` }
         >
             &#9829;
         </button>

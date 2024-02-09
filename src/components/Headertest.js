@@ -59,7 +59,7 @@ function Headertest() {
         </button>
 
         
-          <button onClick={() => setShowNav(!showNav)} className="text-4xl m-1 p-2">
+          <button onClick={() => setShowNav(!showNav)} className="text-4xl -mt-2">
             ☰
           </button>
         </div>
