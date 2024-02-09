@@ -22,7 +22,7 @@ function FavoriteButton({ movieData, pageStyle }) {
     }
 
     // Default button style
-    let buttonStyle = "lg:hover:-translate-y-1 duration-300 transition ease-in-out delay-50 text-2xl md:text-4xl ";
+    let buttonStyle = "lg:hover:-translate-y-1 duration-150 transition ease-in-out delay-50 text-2xl md:text-4xl ";
 
     // Adjust buttonStyle based on pageStyle
     if (pageStyle === "page1") {
@@ -36,9 +36,9 @@ function FavoriteButton({ movieData, pageStyle }) {
 
     // Adjust textStyle based on pageStyle
     if (isFavorited && pageStyle === "page1") {
-        textStyle = "text-red-500 lg:hover:text-white";
+        textStyle = "text-red-500";
     } else if(isFavorited && pageStyle === "single"){
-        textStyle = "text-red-500 lg:hover:text-white";
+        textStyle = "text-red-500";
 
     }
 
