@@ -35,12 +35,12 @@ function PageHome() {
         }
         setMovies(result.results);
         
-      
+        // we point to result.results[0].id since the data might still return
+        // an array of multiple videos
         fetchTrailers(result.results[0].id)
         .then((data) => {
             const trailer = filterVideos(data.results);
             setShowTrailer(trailer);
-            console.log(trailer);
         })
         .catch((trailerError) => {
             console.error('Error fetching trailers:', trailerError);

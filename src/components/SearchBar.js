@@ -7,14 +7,16 @@ function SearchBar({ onSearch, className }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(inputValue);  // Call onSearch with the inputValue
-    navigate('/search', { state: { input: inputValue } });
+    onSearch(inputValue);  
+
+    // we use navigate to go to the search page
+    navigate(`/search/${inputValue}`, { state: { input: inputValue } });
   };
 
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === 'Enter') {
-        onSearch(inputValue);  // Call onSearch with the inputValue
+        onSearch(inputValue);  
         navigate('/search', { state: { input: inputValue } });
       }
     };

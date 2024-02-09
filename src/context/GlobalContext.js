@@ -1,20 +1,15 @@
 import {createContext, useEffect, useState} from "react";
 
-
-
 export const GlobalContext = createContext();
 
 export function GlobalProvider({children}){
     function loadFromlocalStorage(){ 
-        
-        // const localData = localStorage.getItem(list);
         const localData = localStorage.getItem("favorites");
+        // we have to parse the data because of how JSON stores its data
         return localData ? JSON.parse(localData) : [];
     }
     
     function loadFromlocalStorageWatchlist(){ 
-        
-        // const localData = localStorage.getItem(list);
         const localData = localStorage.getItem("watchlist");
         return localData ? JSON.parse(localData) : [];
     }
@@ -49,6 +44,7 @@ export function GlobalProvider({children}){
     }
 
     useEffect(() => {
+        //coverts it back to json format
         localStorage.setItem("favorites", JSON.stringify(favorites));
     },[favorites]);
 

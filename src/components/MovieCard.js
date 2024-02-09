@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import WatchButton from './WatchListButton';
-
+import placeholder from '../placeholder.svg'
 
 const defaultMovieData = {
   "adult": false,
@@ -68,14 +68,16 @@ function MovieCard({ movieData = defaultMovieData }) {
 
   return (
     <div className="flex flex-col items-center relative">
+      
       {/* handle movie images + tap state */}
       <div
         className={`relative group ${isTapped ? 'opacity-85' : ''} ${isHoverEnabled ? 'hover:opacity-85' : ''}`}
         onClick={handleInteractionStart}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-      >
-        <img className="object-cover mb-2 rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={imagePath} alt="" />
+      >                                                                   
+                                                                                  {/* !castData.profile_path ? placeholder : CastProfileImagePath */}
+        <img className="object-cover mb-2 rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={imagePath ? imagePath : placeholder} alt="" />
         {isTapped && (  
           <div className="absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
             <WatchButton movieData = {movieData}/>
@@ -89,6 +91,7 @@ function MovieCard({ movieData = defaultMovieData }) {
           
         )}
       </div>
+
       {/* handle movie information + favourite button */}
       <div className="w-[136px] flex flex-col items-center relative md:w-auto">
         <div className="flex items-center mb-2.5 md:w-[216px] md:justify-between lg:mt-2 lg:mb-4 4xl:w-[295px] 4xl:justify-stretch">

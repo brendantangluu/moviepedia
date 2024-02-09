@@ -2,7 +2,12 @@ import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 function FavoriteButton({ movieData }) {
-    const { favorites, wl, addToFavorites, removeFromFavorites , a2w, rfw } = useContext(GlobalContext);
+
+    // we destructure like this because of the structure of the array
+    // so we dont use watchlist, addToWatchlst and removeFromWatchlist
+    // but they are there to make sure we get the proper data and functions
+    
+    const { favorites, watchlist, addToFavorites, removeFromFavorites , addToWatchlist, removeFromWatchlist } = useContext(GlobalContext);
 
     const isFavorited = favorites.find((fav) => fav.id === movieData.id);
 

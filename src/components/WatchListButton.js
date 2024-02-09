@@ -2,6 +2,11 @@ import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 function WatchButton({ movieData }) {
+
+    // we destructure like this because of the structure of the array
+    // so we dont use favourites, addToFavourites and removeFromFavourites
+    // but they are there to make sure we get the proper data and functions
+
     const { favorites,
       watchlist,
       addToFavorites,

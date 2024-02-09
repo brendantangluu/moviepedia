@@ -3,6 +3,20 @@ const API_ENDPOINT = "https://api.themoviedb.org/3";
 const IMAGE_URL_BASE = "https://image.tmdb.org/t/p";
 const SEARCH_BASE =  "&include_adult=false&language=en-US&page=1";
 
+
+// =================================
+//            api calls
+//===================================
+//  1. main categories
+//  2. trailers
+//  3. movie details(for description)
+//  4. movie credits
+//  5.reviews
+//  6. search api call
+
+
+
+//  1. main categories  (movies, popular, top rated, upcoming, now playing)
 function getPopularMovies(){
     const options = {
         method: 'GET',
@@ -87,6 +101,7 @@ function getNowPlayingMovies(){
       });
 }
 
+//  2. trailers
 function fetchTrailers(movieId){
   const options = {
     method: 'GET',
@@ -109,6 +124,7 @@ function fetchTrailers(movieId){
     });
 }
 
+//  3. movie details(for description)
 function getMovieDetails(movieId) {
   const options = {
     method: 'GET',
@@ -130,6 +146,7 @@ function getMovieDetails(movieId) {
     });
 }
 
+//  4. movie credits
 function getCreditDetails(movieId) {
   const options = {
     method: 'GET',
@@ -151,6 +168,7 @@ function getCreditDetails(movieId) {
     });
 }
 
+//  5.reviews
 function getReviews(movieId){
   const options = {
     method: 'GET',
@@ -173,7 +191,7 @@ function getReviews(movieId){
 
 }
 
-
+//  6. search api call
 function discoverMovies(search){
   
   const options = {
@@ -196,7 +214,5 @@ function discoverMovies(search){
     });
 
 }
-
-// fetch('https://api.themoviedb.org/3/search/movie?query=pizza&include_adult=false&language=en-US&page=1', options)
 
 export {getPopularMovies, getTopRatedMovies, getUpcomingMovies, getNowPlayingMovies, fetchTrailers, getMovieDetails, getCreditDetails, getReviews, discoverMovies, IMAGE_URL_BASE, API_ENDPOINT };

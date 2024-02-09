@@ -6,6 +6,9 @@ import MoviesContainer from '../components/MoviesContainer';
 function SearchPage() {
   const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
+
+  // https://reactrouter.com/en/6.22.0/hooks/use-location 
+  // this is used with navigate for our search
   const input = location.state && location.state.input;
 
   useEffect(() => {
@@ -23,8 +26,8 @@ function SearchPage() {
 
   return (
     <div>
-      <h2>Search Results for "{input}"</h2>
-      <MoviesContainer title="Search Results" moviesData={searchResults} />
+      <h2 className='ml-2 p-4 pt-6 text-xl'>Search Results for "{input}"</h2>
+      <MoviesContainer title="" moviesData={searchResults} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import MovieCard from '../components/MovieCard';
 
+
 function PageWatchList() {
   const { watchlist } = useContext(GlobalContext);
 
@@ -14,14 +15,6 @@ function PageWatchList() {
         ))}
       </div>
       
-      {watchlist.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-12">
-          {watchlist.map((favorite, index) => (
-            <MovieCard key={index} movieData={favorite} />
-          ))}
-        </div>
-      )}
-
       {watchlist.length === 0 && (
         <p className='text-2xl'>No movies were added!</p>
       )}
