@@ -23,7 +23,7 @@ function FavoriteButton({ movieData, pageStyle }) {
     if (pageStyle === "page1") {
         buttonStyle += "lg:hover:text-red-500 ml-14 4xl:ml-0";
     } else if (pageStyle === "page2") {
-        buttonStyle += " lg:hover:text-white ml-4";
+        buttonStyle += " lg:hover:text-red-500 ml-4";
     }
 
     // Default text style
