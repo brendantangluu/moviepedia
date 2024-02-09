@@ -145,7 +145,7 @@ function PageSingle(){
                         {/* Mobile Movie Description */}
                         <div className="text-sm md:hidden">
                             <h3 className="font-bold mb-4 mt-6 text-2xl sticky left-1 border-l-4 pl-2 translate-x-1 border-logo">About</h3>
-                            <p className="sm:text-">{loadedMovieData.overview}</p>
+                            <p>{loadedMovieData.overview}</p>
                         </div>
 
                     {/* Movie Trailer */}

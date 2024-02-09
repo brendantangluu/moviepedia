@@ -13,6 +13,19 @@ function PageWatchList() {
           <MovieCard key={index} movieData={watchlist} />
         ))}
       </div>
+      
+      {watchlist.length > 0 && (
+        <div className="flex flex-wrap justify-center gap-12">
+          {watchlist.map((favorite, index) => (
+            <MovieCard key={index} movieData={favorite} />
+          ))}
+        </div>
+      )}
+
+      {watchlist.length === 0 && (
+        <p className='text-2xl'>No movies were added!</p>
+      )}
+
     </div>
   );
 }
