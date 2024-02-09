@@ -103,12 +103,8 @@ function PageSingle(){
                         <div className="col-span-8">
                             <div className="flex align-middle justify-between wrap flex-wrap">
                                 <div className="flex items-center justify-between mb-1">
-<<<<<<< Updated upstream
-                                    {/* Title */}
-                                    <h2 className="font-bold text-2xl pr-2 sm:text-3xl lg:text-4xl">{loadedMovieData.title}</h2>
-=======
-                                    <h2 className="font-bold text-2xl pr-2 mb-2 sm:text-3xl lg:mb-4 lg:text-4xl">{loadedMovieData.title}</h2>
->>>>>>> Stashed changes
+                                {/* Title */}
+                                <h2 className="font-bold text-2xl pr-2 mb-2 sm:text-3xl lg:mb-4 lg:text-4xl">{loadedMovieData.title}</h2>
                                 </div>
                             </div>
 
