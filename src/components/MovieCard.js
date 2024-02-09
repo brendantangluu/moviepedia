@@ -36,7 +36,8 @@ function MovieCard({ movieData = defaultMovieData }) {
   };
 
   const imagePath = `${IMAGE_URL_BASE}/w780${movieData.poster_path}`;
-  const truncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 50)}...` : movieData.overview;
+  const mobileTruncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 35)}...` : movieData.overview;
+  const desktopTruncatedOverview = movieData.overview.length > 30 ? `${movieData.overview.slice(0, 85)}...` : movieData.overview;
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,8 +80,12 @@ function MovieCard({ movieData = defaultMovieData }) {
         {isTapped && (  
           <div className="absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
             <WatchButton movieData = {movieData}/>
-            <p>{movieData.overview}</p>
-            <MoreInfoButton movieData = {movieData}/>
+            <p className='p-2 text-sm'>{matches ? desktopTruncatedOverview : mobileTruncatedOverview}</p>   
+            <Link to={`/single/${movieData.id}/about`}>
+              <button className="more-info-btn bg-logo text-white px-1 py-1 rounded text-xs mb-4 hover:animate-pulse uppercase font-bold sm:text-sm lg:p-2 lg:text-base xl:mt-8">
+                  More Info
+              </button>
+            </Link>
           </div>
           
         )}
