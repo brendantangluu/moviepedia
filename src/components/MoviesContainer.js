@@ -20,7 +20,7 @@ function MoviesContainer({ title, moviesData }) {
   return (
     <section>
       <h2 className="text-xl font-bold my-4 pl-2">{title}</h2>
-      <div className="relative overflow-x-scroll whitespace-nowrap">
+      <div className="relative overflow-x-scroll">
         <div className="flex sm:mx-2 md:grid md:grid-cols-3 md:justify-items-center md:gap-4 md:mx-6 lg:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6" style={{ transform: `translateX(${-currentIndex * 100}%)` }}>
           {moviesData.length > 0 &&
             moviesData.slice(0, sliceNumber).map((movieData) => (
