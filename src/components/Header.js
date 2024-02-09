@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Nav from './Nav';
 import Logo from './Logo';
 import SearchBar from './SearchBar';
@@ -74,4 +74,4 @@ function Header() {
   );
 }
 
-export default Headertest;
+export default Header;
