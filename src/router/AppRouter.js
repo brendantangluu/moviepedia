@@ -24,7 +24,7 @@ function AppRouter(){
                 <Route path="/about" element = {<PageAbout/>}/>
                 <Route path="/favourites" element={<Favourites />} />
                 <Route path="/watchlist" element={<PageWatchList />} />
-                <Route path="/search" element={<PageSearch />} />
+                <Route path="/search/:slug" element={<PageSearch />} />
                 <Route path='/header' element={<Header />} />
             </Routes>
             <Footer/>
