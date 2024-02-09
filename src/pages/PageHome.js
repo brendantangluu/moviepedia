@@ -87,7 +87,7 @@ function PageHome() {
           </Tab.List>
         </Tab.Group> 
         <MoviesContainer moviesData={movies} />
-        <div className="w-3/5 m-auto" >
+        <div className=" w-4/5 lg:w-3/5 m-auto" >
         <h2 className="font-bold mb-4 mt-6 text-2xl sticky border-l-4 pl-2 border-logo sm:text-base md:text-2xl md:mt-12 lg:text-3xl">Watch Trailer</h2>
         <h3 className="font-bold text-xl mb-1">{showTrailer.length > 0 && showTrailer[0].name}</h3>
           <Trailer trailers = {showTrailer} />

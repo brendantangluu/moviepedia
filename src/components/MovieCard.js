@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import FavoriteButton from './FavoriteButton';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import WatchButton from './WatchListButton';
+import placeholder2 from '../placeholder2.svg'
 
 function MovieCard({ movieData }) {
   const [isTapped, setIsTapped] = useState(false);
@@ -48,8 +49,10 @@ function MovieCard({ movieData }) {
         onClick={handleInteractionStart}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-      >
-        <img className="object-cover rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={imagePath} alt="" />
+      >  
+                                                              {/* !castData.profile_path ? placeholder : CastProfileImagePath */}
+      
+        <img className="object-cover rounded-lg max-w-[138px] md:max-w-[216px] 4xl:max-w-[295px]" src={!movieData.poster_path ? placeholder2 : imagePath} alt="" />
         {isTapped && (  
           <div className="px-2 absolute top-0 left-0 w-full max-w-full h-full bg-black opacity-90 flex flex-col items-center justify-between rounded-lg">
             <WatchButton movieData = {movieData}/>
