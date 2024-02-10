@@ -68,7 +68,7 @@ function MovieCard({ movieData }) {
       </div>
 
       {/* handle movie information + favourite button */}
-      <div className="w-[136px] flex flex-col items-center relative md:w-auto">
+      <div className="w-[136px] flex flex-col items-center relative mt-2 md:w-auto">
         <div className="flex items-center mb-2.5 md:w-[216px] md:justify-between lg:mt-2 lg:mb-4 4xl:w-[295px] 4xl:justify-stretch">
           <div className="flex items-center">
               <svg className="mb-0.5" xmlns="http://www.w3.org/2000/svg" width={`${matches ? "40" : "24"}`} height={`${matches ? "40" : "22"}`} viewBox="0 0 24 24" fill="yellow">
